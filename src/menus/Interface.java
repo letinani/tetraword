@@ -52,7 +52,7 @@ public class Interface extends JFrame implements Observer {
 		options.getHexaButton().addObserver(this);
 		options.getReturnButton().addObserver(this);
 		
-		MakeSound.playSound("data/sounds/POL-mecha-world-short.wav", true);
+		//MakeSound.playSound("data/sounds/POL-mecha-world-short.wav", true);
 		
 		try {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));
@@ -85,8 +85,6 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			this.validate();
-			
 			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "VS Bot") {
 			
@@ -95,15 +93,11 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			this.validate();
-			
 			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "3 Joueurs") {
 			gb = new Gameboard(options.getPolyominoType(), (short) 3, words);
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
-			
-			this.validate();
 			
 			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "4 Joueurs") {
@@ -111,14 +105,10 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			this.validate();
-			
 			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "Paramètres") {
 			getContentPane().add(options);
 			getContentPane().remove(mainMenu);
-			
-			this.validate();
 		} else if(button.getText() == "Triominos") {
 			options.getTetroButton().getButton().setEnabled(true);
 			options.getPentoButton().getButton().setEnabled(true);
@@ -126,8 +116,6 @@ public class Interface extends JFrame implements Observer {
 			button.getButton().setEnabled(false);
 			
 			options.setPolyominoType((short) 3);
-			
-			this.validate();
 		} else if(button.getText() == "Tetrominos") {
 			options.getTrioButton().getButton().setEnabled(true);
 			options.getPentoButton().getButton().setEnabled(true);
@@ -135,8 +123,6 @@ public class Interface extends JFrame implements Observer {
 			button.getButton().setEnabled(false);
 			
 			options.setPolyominoType((short) 4);
-			
-			this.validate();
 		} else if(button.getText() == "Pentominos") {
 			options.getTrioButton().getButton().setEnabled(true);
 			options.getTetroButton().getButton().setEnabled(true);
@@ -144,8 +130,6 @@ public class Interface extends JFrame implements Observer {
 			button.getButton().setEnabled(false);
 			
 			options.setPolyominoType((short) 5);
-			
-			this.validate();
 		} else if(button.getText() == "Hexaminos") {
 			options.getTrioButton().getButton().setEnabled(true);
 			options.getTetroButton().getButton().setEnabled(true);
@@ -153,15 +137,12 @@ public class Interface extends JFrame implements Observer {
 			button.getButton().setEnabled(false);
 			
 			options.setPolyominoType((short) 6);
-			
-			this.validate();
 		} else if(button.getText() == "Retour") {
 			getContentPane().remove(options);
 			getContentPane().add(mainMenu);
-			
-			this.validate();
 		}
 		
+		this.validate();
 		this.repaint();
 	}
 	
