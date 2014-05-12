@@ -85,7 +85,7 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			this.revalidate();
+			this.validate();
 			
 			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "VS Bot") {
@@ -95,7 +95,7 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			this.revalidate();
+			this.validate();
 			
 			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "3 Joueurs") {
@@ -103,7 +103,7 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			this.revalidate();
+			this.validate();
 			
 			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "4 Joueurs") {
@@ -111,14 +111,14 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			this.revalidate();
+			this.validate();
 			
 			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "Paramètres") {
 			getContentPane().add(options);
 			getContentPane().remove(mainMenu);
 			
-			this.revalidate();
+			this.validate();
 		} else if(button.getText() == "Triominos") {
 			options.getTetroButton().getButton().setEnabled(true);
 			options.getPentoButton().getButton().setEnabled(true);
@@ -127,7 +127,7 @@ public class Interface extends JFrame implements Observer {
 			
 			options.setPolyominoType((short) 3);
 			
-			this.revalidate();
+			this.validate();
 		} else if(button.getText() == "Tetrominos") {
 			options.getTrioButton().getButton().setEnabled(true);
 			options.getPentoButton().getButton().setEnabled(true);
@@ -136,7 +136,7 @@ public class Interface extends JFrame implements Observer {
 			
 			options.setPolyominoType((short) 4);
 			
-			this.revalidate();
+			this.validate();
 		} else if(button.getText() == "Pentominos") {
 			options.getTrioButton().getButton().setEnabled(true);
 			options.getTetroButton().getButton().setEnabled(true);
@@ -145,7 +145,7 @@ public class Interface extends JFrame implements Observer {
 			
 			options.setPolyominoType((short) 5);
 			
-			this.revalidate();
+			this.validate();
 		} else if(button.getText() == "Hexaminos") {
 			options.getTrioButton().getButton().setEnabled(true);
 			options.getTetroButton().getButton().setEnabled(true);
@@ -154,12 +154,12 @@ public class Interface extends JFrame implements Observer {
 			
 			options.setPolyominoType((short) 6);
 			
-			this.revalidate();
+			this.validate();
 		} else if(button.getText() == "Retour") {
 			getContentPane().remove(options);
 			getContentPane().add(mainMenu);
 			
-			this.revalidate();
+			this.validate();
 		}
 		
 		this.repaint();
@@ -169,12 +169,17 @@ public class Interface extends JFrame implements Observer {
 		getContentPane().remove(gb);
 		getContentPane().add(mainMenu);
 		
-		this.revalidate();
+		this.validate();
 		this.repaint();
 	}
 	
 	public Gameboard getGameboard() {
 		return gb;
+	}
+	public static void main(String[] args) {
+		Interface tetraword = new Interface(800, 600);
+		tetraword.pack();
+		tetraword.setVisible(true);
 	}
 
 }
