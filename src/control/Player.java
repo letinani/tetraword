@@ -178,7 +178,7 @@ public class Player extends Thread {
 		return true;
 	}
 	
-	public boolean rotate(String direction, Polyomino current, boolean stop) {
+	public boolean rotate(String direction, Polyomino current) {
 		Point[] tmpCoords = new Point[current.getNumberOfBricks()];
 		for(int i = 0; i < current.getNumberOfBricks(); ++i) {
 			tmpCoords[i] = new Point(current.getBrick(i).getCoords());
@@ -190,12 +190,6 @@ public class Player extends Thread {
 		}
 		
 		if(!tryMove(current, "down", 0) || !tryMove(current, "left", 0) || !tryMove(current, "right", 0)) {
-			if(stop) {
-				for(int i = 0; i < current.getNumberOfBricks(); ++i) {
-					current.getBrick(i).setCoords(new Point(tmpCoords[i].x,tmpCoords[i].y));
-				}
-				return false;
-			}
 			
 			for(int i = 1; i < current.getNumberOfBricks(); ++i) {
 				if(tryMove(current, "right", i) && tryMove(current, "left", i) && tryMove(current, "down", 0)) {
@@ -211,9 +205,6 @@ public class Player extends Thread {
 			for(int i = 0; i < current.getNumberOfBricks(); ++i) {
 				current.getBrick(i).setCoords(new Point(tmpCoords[i].x,tmpCoords[i].y));
 			}
-			
-			if(direction == "left") return rotate("right", current, true);
-			else return rotate("left", current, true);
 		}
 		
 		return true;

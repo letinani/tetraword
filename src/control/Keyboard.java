@@ -61,12 +61,12 @@ public class Keyboard extends KeyAdapter {
 			            break;
 			        
 			        case KeyEvent.VK_CONTROL:
-			        	iface.getGameboard().getPlayer(i).rotate("left", current, false);
+			        	iface.getGameboard().getPlayer(i).rotate("left", current);
 			        	iface.getGameboard().repaint();
 			            break;
 			            
 			        case KeyEvent.VK_SHIFT:
-			        	iface.getGameboard().getPlayer(i).rotate("right", current, false);
+			        	iface.getGameboard().getPlayer(i).rotate("right", current);
 			        	iface.getGameboard().repaint();
 			            break;
 			            
@@ -110,12 +110,12 @@ public class Keyboard extends KeyAdapter {
 			            break;
 			        
 			        case KeyEvent.VK_A:
-			        	iface.getGameboard().getPlayer(i).rotate("left", current, false);
+			        	iface.getGameboard().getPlayer(i).rotate("left", current);
 			        	iface.getGameboard().repaint();
 			            break;
 			            
 			        case KeyEvent.VK_E:
-			        	iface.getGameboard().getPlayer(i).rotate("right", current, false);
+			        	iface.getGameboard().getPlayer(i).rotate("right", current);
 			        	iface.getGameboard().repaint();
 			            break;
 			            
@@ -159,12 +159,12 @@ public class Keyboard extends KeyAdapter {
 		            break;
 		        
 		        case KeyEvent.VK_T:
-		        	iface.getGameboard().getPlayer(i).rotate("left", current, false);
+		        	iface.getGameboard().getPlayer(i).rotate("left", current);
 		        	iface.getGameboard().repaint();
 		            break;
 		            
 		        case KeyEvent.VK_U:
-		        	iface.getGameboard().getPlayer(i).rotate("right", current, false);
+		        	iface.getGameboard().getPlayer(i).rotate("right", current);
 		        	iface.getGameboard().repaint();
 		            break;
 		            
@@ -208,12 +208,12 @@ public class Keyboard extends KeyAdapter {
 		            break;
 		        
 		        case KeyEvent.VK_I:
-		        	iface.getGameboard().getPlayer(i).rotate("left", current, false);
+		        	iface.getGameboard().getPlayer(i).rotate("left", current);
 		        	iface.getGameboard().repaint();
 		            break;
 		            
 		        case KeyEvent.VK_P:
-		        	iface.getGameboard().getPlayer(i).rotate("right", current, false);
+		        	iface.getGameboard().getPlayer(i).rotate("right", current);
 		        	iface.getGameboard().repaint();
 		            break;
 		            
