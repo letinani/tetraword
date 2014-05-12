@@ -53,7 +53,7 @@ public class Interface extends JFrame implements Observer {
 		options.getHexaButton().addObserver(this);
 		options.getReturnButton().addObserver(this);
 		
-		//MakeSound.playSound("data/sounds/POL-mecha-world-short.wav", true);
+		MakeSoundLoop.playSound("data/sounds/POL-mecha-world-short.wav", true);
 		
 		try {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));
@@ -68,6 +68,8 @@ public class Interface extends JFrame implements Observer {
 		} catch (NumberFormatException | IOException e) {
 			e.printStackTrace();
 		}
+		
+		addKeyListener(new Keyboard(this));
 
 	}
 	
@@ -86,7 +88,6 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "VS Bot") {
 			
 		} else if(button.getText() == "2 Joueurs") {
@@ -94,19 +95,16 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "3 Joueurs") {
 			gb = new Gameboard(options.getPolyominoType(), (short) 3, words);
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "4 Joueurs") {
 			gb = new Gameboard(options.getPolyominoType(), (short) 4, words);
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
-			addKeyListener(new Keyboard(this));
 		} else if(button.getText() == "Paramètres") {
 			getContentPane().add(options);
 			getContentPane().remove(mainMenu);

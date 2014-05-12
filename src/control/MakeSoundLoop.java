@@ -7,7 +7,7 @@ import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 
-public class MakeSound {
+public class MakeSoundLoop {
 	
 	private static AudioPlayer MGP = AudioPlayer.player;
 	private static AudioStream BGM;
