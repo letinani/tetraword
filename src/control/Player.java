@@ -278,6 +278,7 @@ public class Player extends Thread {
 					Brick b = (Brick) itrBricks.next();
 					if(b.getAbsoluteCoords().y == coordY) {
 						bricksToDelete.add(b);
+						SoundEffect.COMPLETE_LINE.play();
 					}
 				}
 				

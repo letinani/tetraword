@@ -10,7 +10,6 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import control.Keyboard;
-import control.MakeSoundLoop;
 import control.SoundEffect;
 
 public class Interface extends JFrame implements Observer {
@@ -52,8 +51,6 @@ public class Interface extends JFrame implements Observer {
 		options.getPentoButton().addObserver(this);
 		options.getHexaButton().addObserver(this);
 		options.getReturnButton().addObserver(this);
-		
-		MakeSoundLoop.playSound("data/sounds/POL-mecha-world-short.wav", true);
 		
 		try {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));

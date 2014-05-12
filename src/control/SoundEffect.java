@@ -1,14 +1,21 @@
 package control;
 
 import java.io.*;
+
 import javax.sound.sampled.*;
+
+import sun.audio.ContinuousAudioDataStream;
 
 
 
 public enum SoundEffect {
    WELCOME("data/sounds/Pickup_Coin9.wav"),   
    HIT("data/sounds/Pickup_Coin10.wav"),
-   SHOOT("data/sounds/Powerup3.wav");      
+   LOOSE("data/sounds/Danger2.wav"),
+   WIN("data/sounds/Emerge5.wav"),// la fin de la partie
+   COMPLETE_LINE("data/sounds/Beep8.wav"),
+   MUSIC("data/sounds/GameBoy Rocker.wav"),
+   MOVE("data/sounds/Blip_Select.wav");     // son : quand la ligne est complétée 
    
    public static enum Volume {
       MUTE, LOW, MEDIUM, HIGH
@@ -45,7 +52,12 @@ public enum SoundEffect {
          clip.start();     
       }
    }
-   
+   public void playLoop() {
+	   clip.loop(Clip.LOOP_CONTINUOUSLY);
+   } 
+   public void stop() {
+	   clip.stop();
+   } 
    // Optional static method to pre-load all the sound files.
    public static void init() {
       values(); // calls the constructor for all the elements
