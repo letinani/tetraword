@@ -10,7 +10,6 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import control.Keyboard;
-import control.MakeSoundLoop;
 import control.SoundEffect;
 
 public class Interface extends JFrame implements Observer {
@@ -19,6 +18,7 @@ public class Interface extends JFrame implements Observer {
 	private int widthScreen;
 	private int heightScreen;
 	private Menu mainMenu;
+	private MenuInGame subMenu;
 	private Gameboard gb;
 	private Options options;
 	private BufferedReader reader;
@@ -53,7 +53,6 @@ public class Interface extends JFrame implements Observer {
 		options.getHexaButton().addObserver(this);
 		options.getReturnButton().addObserver(this);
 		
-		//MakeSound.playSound("data/sounds/POL-mecha-world-short.wav", true);
 		
 		try {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));
@@ -83,6 +82,8 @@ public class Interface extends JFrame implements Observer {
 		
 		if(button.getText() == "Solo") {
 			gb = new Gameboard(options.getPolyominoType(), (short) 1, words);
+			subMenu = new MenuInGame();
+			gb.add(subMenu);
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
