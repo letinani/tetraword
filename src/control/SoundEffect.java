@@ -14,7 +14,8 @@ public enum SoundEffect {
    LOOSE("data/sounds/Danger2.wav"),
    WIN("data/sounds/Emerge5.wav"),// la fin de la partie
    COMPLETE_LINE("data/sounds/Beep8.wav"),
-   MUSIC("data/sounds/POL-mecha-world-short.wav");     // son : quand la ligne est complétée 
+   MUSIC("data/sounds/GameBoy Rocker.wav"),
+   MOVE("data/sounds/Blip_Select.wav");     // son : quand la ligne est complétée 
    
    public static enum Volume {
       MUTE, LOW, MEDIUM, HIGH
