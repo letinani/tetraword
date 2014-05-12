@@ -17,6 +17,7 @@ import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 
 import control.Player;
+import control.SoundEffect;
 import polyominos.Letter;
 import polyominos.PolyominoPattern;
 
@@ -25,7 +26,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Gameboard extends JPanel implements Observer {
@@ -43,10 +46,18 @@ public class Gameboard extends JPanel implements Observer {
 	private LinkedList<Letter[]> lettersPatterns;
 	private String[] words;
 	private Font minecraftia;
+	private BufferedImage backgroundImage;
+
 
 	private Player[] players;
 
 	public Gameboard(short n, short nbPlayers, String[] words) {
+        try {
+  	      backgroundImage = ImageIO.read(new File("data/img/bg_game.jpg"));
+  	    } catch(IOException e) {
+  	      e.printStackTrace();
+  	    }
+        
 		try {
 			this.minecraftia = TFont.loadFont("data/font/Minecraftia.ttf");
 			
@@ -164,10 +175,14 @@ public class Gameboard extends JPanel implements Observer {
 	
 	@Override
 	public void paintComponent(Graphics g) {
+		SoundEffect.MUSIC.playLoop();
         super.paintComponent(g);
-        
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+
         int nbLosers = 0;
         int winner = 0;
+        
+        
         
         for(int i = 0; i < players.length; ++i) {
         	g.translate(this.getWidth() / players.length * i, 0);
@@ -201,6 +216,8 @@ public class Gameboard extends JPanel implements Observer {
         	g.setFont(minecraftia.deriveFont(Font.PLAIN, this.getWidth() / 40));
         	g.drawString("Appuyez sur Entrée", this.getWidth() / 3, this.getHeight() * 3 / 5);
         } else if(nbLosers == 1 && players.length == 1) {
+        	SoundEffect.MUSIC.stop();
+    		SoundEffect.LOOSE.play();
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
