@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<letters number="26">
+    <letter frequence="17.1">e</letter>
+    <letter frequence="8.1">a</letter>
+    <letter frequence="8">s</letter>
+    <letter frequence="7.6">i</letter>
+    <letter frequence="7.2">t</letter>
+    <letter frequence="7.1">n</letter>
+    <letter frequence="6.6">r</letter>
+    <letter frequence="6.3">u</letter>
+    <letter frequence="5.5">l</letter>
+    <letter frequence="5.4">o</letter>
+    <letter frequence="3.7">d</letter>
+    <letter frequence="3.4">c</letter>
+    <letter frequence="3.1">p</letter>
+    <letter frequence="3">m</letter>
+    <letter frequence="1.6">v</letter>
+    <letter frequence="1.4">q</letter>
+    <letter frequence="1">f</letter>
+    <letter frequence="0.9">b</letter>
+    <letter frequence="0.8">g</letter>
+    <letter frequence="0.7">h</letter>
+    <letter frequence="0.5">j</letter>
+    <letter frequence="0.4">x</letter>
+    <letter frequence="0.3">y</letter>
+    <letter frequence="0.1">z</letter>
+    <letter frequence="0.07">w</letter>
+    <letter frequence="0.03">k</letter>
+</letters>

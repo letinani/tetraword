@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<polyominos number="60">
+    <polyomino color="16610566">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="4" y="0" />
+        <point x="5" y="0" />
+    </polyomino>
+    <polyomino color="14315875">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="4" y="1" />
+        <point x="4" y="0" />
+    </polyomino>
+    <polyomino color="4807587">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+        <point x="4" y="1" />
+    </polyomino>
+    <polyomino color="11464544">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="3" y="0" />
+        <point x="4" y="0" />
+    </polyomino>
+    <polyomino color="12526709">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="8940938">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="1" y="0" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="936572">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="3" y="1" />
+    </polyomino>
+    <polyomino color="6871368">
+        <point x="0" y="2" />
+        <point x="1" y="2" />
+        <point x="2" y="2" />
+        <point x="3" y="2" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="7367933">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="13208139">
+        <point x="0" y="2" />
+        <point x="1" y="2" />
+        <point x="2" y="2" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="5687110">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="0" />
+        <point x="3" y="1" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="3363117">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+        <point x="3" y="1" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="1092560">
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="9774138">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="1992997">
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+        <point x="3" y="1" />
+    </polyomino>
+    <polyomino color="1228257">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+        <point x="3" y="1" />
+    </polyomino>
+    <polyomino color="1187102">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+        <point x="4" y="0" />
+    </polyomino>
+    <polyomino color="9831792">
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="1" y="2" />
+        <point x="2" y="2" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="10625358">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="5387165">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="4" y="1" />
+    </polyomino>
+    <polyomino color="11155492">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="3337936">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="16008682">
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="6818684">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="1" y="2" />
+        <point x="2" y="2" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="7464224">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="1" y="2" />
+        <point x="2" y="2" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="15086907">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+    </polyomino>
+    <polyomino color="5804215">
+        <point x="0" y="2" />
+        <point x="1" y="2" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+    </polyomino>
+    <polyomino color="15246264">
+        <point x="0" y="2" />
+        <point x="1" y="0" />
+        <point x="1" y="2" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+    </polyomino>
+    <polyomino color="10265339">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="5533029">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="1" y="2" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+    </polyomino>
+    <polyomino color="11540179">
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="1" y="2" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+    </polyomino>
+    <polyomino color="2126008">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="1" y="2" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+    </polyomino>
+    <polyomino color="8764521">
+        <point x="0" y="1" />
+        <point x="0" y="2" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+    </polyomino>
+    <polyomino color="115332">
+        <point x="0" y="1" />
+        <point x="0" y="2" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+    </polyomino>
+    <polyomino color="36962">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="62529">
+        <point x="0" y="1" />
+        <point x="0" y="2" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="499">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="1" y="2" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+    </polyomino>
+    <polyomino color="75250">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="4" y="0" />
+    </polyomino>
+    <polyomino color="44027">
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="147727">
+        <point x="0" y="2" />
+        <point x="1" y="2" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="22026">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="4" y="0" />
+        <point x="4" y="1" />
+    </polyomino>
+    <polyomino color="15042">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="3" y="1" />
+        <point x="4" y="0" />
+    </polyomino>
+    <polyomino color="9358">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="3" y="0" />
+        <point x="3" y="1" />
+    </polyomino>
+    <polyomino color="13102">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="3" y="1" />
+    </polyomino>
+    <polyomino color="551">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="3" y="1" />
+        <point x="3" y="2" />
+    </polyomino>
+    <polyomino color="7729">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="2935">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="2" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="1661">
+        <point x="0" y="1" />
+        <point x="1" y="2" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="472">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="3" y="1" />
+        <point x="4" y="1" />
+    </polyomino>
+    <polyomino color="1281">
+        <point x="0" y="1" />
+        <point x="1" y="2" />
+        <point x="1" y="1" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="85">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+        <point x="3" y="1" />
+    </polyomino>
+    <polyomino color="857">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="2" y="2" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="595">
+        <point x="0" y="1" />
+        <point x="1" y="2" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="845">
+        <point x="0" y="2" />
+        <point x="1" y="2" />
+        <point x="1" y="1" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="414">
+        <point x="0" y="2" />
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="1" y="0" />
+        <point x="2" y="0" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="494">
+        <point x="0" y="0" />
+        <point x="1" y="2" />
+        <point x="1" y="0" />
+        <point x="2" y="2" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+    </polyomino>
+    <polyomino color="1373">
+        <point x="0" y="2" />
+        <point x="1" y="2" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+        <point x="3" y="1" />
+        <point x="3" y="0" />
+    </polyomino>
+    <polyomino color="530">
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="1" y="0" />
+        <point x="2" y="2" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+    </polyomino>
+    <polyomino color="1090">
+        <point x="0" y="2" />
+        <point x="1" y="2" />
+        <point x="1" y="1" />
+        <point x="1" y="0" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+    </polyomino>
+    <polyomino color="1415">
+        <point x="0" y="1" />
+        <point x="0" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="2" />
+        <point x="2" y="1" />
+        <point x="2" y="0" />
+    </polyomino>
+</polyominos>
+

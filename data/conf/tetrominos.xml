@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<polyominos number="7">
+    <polyomino color="16711680">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="0" y="2" />
+        <point x="0" y="3" />
+    </polyomino>
+    <polyomino color="16744192">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+    </polyomino>
+    <polyomino color="8388352">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="0" y="2" />
+        <point x="1" y="0" />
+    </polyomino>
+    <polyomino color="65357">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="0" y="2" />
+        <point x="1" y="1" />
+    </polyomino>
+    <polyomino color="65535">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="0" y="2" />
+        <point x="1" y="2" />
+    </polyomino>
+    <polyomino color="255">
+        <point x="0" y="0" />
+        <point x="0" y="1" />
+        <point x="1" y="1" />
+        <point x="1" y="2" />
+    </polyomino>
+    <polyomino color="10486015">
+        <point x="0" y="0" />
+        <point x="1" y="0" />
+        <point x="1" y="1" />
+        <point x="2" y="1" />
+    </polyomino>
+</polyominos>
+
