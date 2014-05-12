@@ -10,7 +10,8 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import control.Keyboard;
-import control.MakeSound;
+import control.MakeSoundLoop;
+import control.SoundEffect;
 
 public class Interface extends JFrame implements Observer {
 
@@ -161,6 +162,10 @@ public class Interface extends JFrame implements Observer {
 		Interface tetraword = new Interface(800, 600);
 		tetraword.pack();
 		tetraword.setVisible(true);
+		SoundEffect.init();
+	    SoundEffect.volume = SoundEffect.Volume.LOW;  
+		SoundEffect.WELCOME.play();
+
 	}
 
 }

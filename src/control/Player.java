@@ -77,6 +77,9 @@ public class Player extends Thread {
 	}
 	
 	public void tetris() {
+		SoundEffect.init();
+	    SoundEffect.volume = SoundEffect.Volume.LOW;  
+		
 		if(this.getTime() >= Player.framePerSecond / ((elements.getLinesDestroyed() / 10) + 1)) {
 	    	this.setTime(0);
 	    		
@@ -86,13 +89,13 @@ public class Player extends Thread {
 		    		current.setPosition(current.getPosition().x, current.getPosition().y + 1);
 		    	} else {
 		    		int nbLinesDestroyed = destroyLines();
-		    		
+		    		SoundEffect.HIT.play();
 		    		if(current.isOutOfLimits()) {
 		    			setOver(true);
 		    		} else {
 		    			elements.setScore(elements.getScore() + (4 * ((elements.getLinesDestroyed() / 10) + 1)));
 		    			elements.setScore(elements.getScore() + (nbLinesDestroyed*nbLinesDestroyed * ((elements.getLinesDestroyed() / 10) + 1)));
-		    			
+		  
 		    			// On récupère l'élément suivant dans la liste.
 		    			++this.indice;
 		    		}
