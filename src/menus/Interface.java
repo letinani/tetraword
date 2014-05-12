@@ -83,7 +83,7 @@ public class Interface extends JFrame implements Observer {
 		if(button.getText() == "Solo") {
 			gb = new Gameboard(options.getPolyominoType(), (short) 1, words);
 			subMenu = new MenuInGame();
-			gb.add(subMenu);
+			//gb.add(subMenu);
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
