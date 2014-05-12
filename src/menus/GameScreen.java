@@ -47,7 +47,7 @@ public class GameScreen {
 		brickSize = width / 15;
 		
 		// Titre
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize));
         g.drawString("Joueur " + Integer.toString(player + 1), brickSize * 4, brickSize * 3 / 2);
         
@@ -59,6 +59,7 @@ public class GameScreen {
         g.fillRect(0, 0, brickSize * 10, brickSize * 20);
         
         // Score.
+        g.setColor(Color.white);
         g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize));
 		g.drawString(Integer.toString(score), 0, 21 * brickSize + brickSize / 2);
 		
@@ -81,7 +82,7 @@ public class GameScreen {
         int level = (linesDestroyed / 10) + 1;
         if(level > 10) level = 10;
         
-        g.setColor(Color.black);
+        g.setColor(Color.white);        
         g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize * 2 / 3));
         g.drawString("Nv.", brickSize * 11, brickSize * 9);
         g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize));
@@ -91,7 +92,6 @@ public class GameScreen {
         g.drawString("Nb.", brickSize * 11, brickSize * 12);
         g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize));
         g.drawString(Integer.toString(linesDestroyed % 10), brickSize * 11, brickSize * 13);
-        
         g.translate(-brickSize * 2, -brickSize * 2);
     }
 	

@@ -1,9 +1,7 @@
 package menus;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -175,7 +173,9 @@ public class Gameboard extends JPanel implements Observer {
 	
 	@Override
 	public void paintComponent(Graphics g) {
+		// lancement de la musique de fond
 		SoundEffect.MUSIC.playLoop();
+		
         super.paintComponent(g);
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
@@ -198,6 +198,9 @@ public class Gameboard extends JPanel implements Observer {
         }
         
         if(nbLosers == players.length - 1 && players.length > 1) {
+        	// arret de la musique de fond
+        	SoundEffect.MUSIC.stop();
+        	//affichage des résultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
@@ -208,6 +211,9 @@ public class Gameboard extends JPanel implements Observer {
         	
         	players[winner - 1].setWin(true);
         } else if(nbLosers == players.length && players.length > 1) {
+        	// arret de la musique de fond
+        	SoundEffect.MUSIC.stop();
+        	//affichage des résultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
@@ -216,8 +222,11 @@ public class Gameboard extends JPanel implements Observer {
         	g.setFont(minecraftia.deriveFont(Font.PLAIN, this.getWidth() / 40));
         	g.drawString("Appuyez sur Entr√©e", this.getWidth() / 3, this.getHeight() * 3 / 5);
         } else if(nbLosers == 1 && players.length == 1) {
+        	// arret de la musique de fond
         	SoundEffect.MUSIC.stop();
+        	// bruitage
     		SoundEffect.LOOSE.play();
+    		//affichage des résultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
