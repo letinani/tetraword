@@ -18,7 +18,8 @@ public class Interface extends JFrame implements Observer {
 	private int widthScreen;
 	private int heightScreen;
 	private Menu mainMenu;
-	//private MenuInGame subMenu;
+	private MenuInGame subMenu;
+	private static boolean isPaused = false;
 	private Gameboard gb;
 	private Options options;
 	private BufferedReader reader;
@@ -53,6 +54,8 @@ public class Interface extends JFrame implements Observer {
 		options.getHexaButton().addObserver(this);
 		options.getReturnButton().addObserver(this);
 		
+		subMenu = new MenuInGame();
+
 		try {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));
 			nbWords = Integer.parseInt(reader.readLine());
@@ -153,9 +156,29 @@ public class Interface extends JFrame implements Observer {
 		this.repaint();
 	}
 	
+	public void pauseGame() { // Exécutée quand le jeu est en pause
+		isPaused = true;
+
+		getContentPane().remove(gb);
+		getContentPane().add(subMenu);
+
+		this.validate();
+		this.repaint();
+
+	}
+	public void backtoGame() { // Exécutée quand le jeu est en pause
+		isPaused = false;
+		getContentPane().remove(subMenu);
+		getContentPane().add(gb);
+
+		this.validate();
+		this.repaint();
+	}
 	public Gameboard getGameboard() {
 		return gb;
 	}
 
-
+	public static boolean getIsPaused() {
+		return isPaused;
+	}
 }
