@@ -4,18 +4,19 @@ import java.io.*;
 
 import javax.sound.sampled.*;
 
-import sun.audio.ContinuousAudioDataStream;
-
-
 
 public enum SoundEffect {
    WELCOME("data/sounds/Pickup_Coin9.wav"),   
    HIT("data/sounds/Pickup_Coin10.wav"),
    LOOSE("data/sounds/Danger2.wav"),
    WIN("data/sounds/Emerge5.wav"),// la fin de la partie
-   COMPLETE_LINE("data/sounds/Beep8.wav"),
+   COMPLETE_LINE("data/sounds/Beep8.wav"), // son : quand la ligne est complete
    MUSIC("data/sounds/GameBoyRocker.wav"),
-   MOVE("data/sounds/Blip_Select.wav");     // son : quand la ligne est complétée 
+   MOVE("data/sounds/Blip_Select.wav"),
+   GET_MODIF("data/sounds/Randomize32.wav"),
+   APPLY_MODIF("data/sounds/Randomize6.wav"),
+   BONUS("data/sounds/Powerup3.wav"),
+   MALUS("data/sounds/Shut_Down2.wav");
    
    public static enum Volume {
       MUTE, LOW, MEDIUM, HIGH
