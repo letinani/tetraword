@@ -24,7 +24,7 @@ public class Keyboard extends KeyAdapter {
         	
         	Polyomino current = iface.getGameboard().getPlayer(i).getCurrentPolyomino();
         	
-        	if(i == 1) {
+        	if(i == 0) {
 		        switch (keycode) {
 		            
 			        case KeyEvent.VK_LEFT:
@@ -71,9 +71,12 @@ public class Keyboard extends KeyAdapter {
 			            break;
 			            
 			        case KeyEvent.VK_SPACE:
+			        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
+			        		iface.getGameboard().getPlayer(i).getReserve().action();
+			        	}
 			            break;
 		        }
-        	} else if(i == 0) {
+        	} else if(i == 1) {
         		switch (keycode) {
 		            
 			        case KeyEvent.VK_Q:

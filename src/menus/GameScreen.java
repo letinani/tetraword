@@ -3,9 +3,16 @@ package menus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
+
+import modificators.Modificator;
+import modificators.Reserve;
 import polyominos.Polyomino;
 import polyominos.PolyominoList;
 
@@ -21,9 +28,18 @@ public class GameScreen {
 	private int width;
 	private HashSet<Integer> bricksClicked;
 	private Font minecraftia;
+	private BufferedImage confirm;
+	private BufferedImage cancel;
 	
 	public GameScreen(int player) {
 		this.minecraftia = TFont.loadFont("data/font/Minecraftia.ttf");
+		
+		try {
+			confirm = ImageIO.read(new File("data/img/confirm.jpg"));
+			cancel = ImageIO.read(new File("data/img/cancel.jpg"));
+  	    } catch(IOException e) {
+  	    	e.printStackTrace();
+  	    }
 		
 		this.polyominos = new PolyominoList();
 		
@@ -40,7 +56,7 @@ public class GameScreen {
 		width = 0;
 	}
 	
-	public void draw(Graphics g, int width, int height, int indice, boolean gameOver) {
+	public void draw(Graphics g, int width, int height, int indice, boolean gameOver, Gameboard gb) {
 		
         this.setWidth(width);
 		if(width * 2 > height) width = height * 10 / 16;
@@ -65,11 +81,16 @@ public class GameScreen {
 		
         
         if(anagramOn > 0) {
-	        g.setColor(Color.green);
-	        g.fillRect(-brickSize * 2, anagramOn * brickSize, brickSize, brickSize);
+	        g.drawImage(confirm, -brickSize * 2, anagramOn * brickSize, brickSize, brickSize, gb);
 	        
-	        g.setColor(Color.red);
-	        g.fillRect(-brickSize, anagramOn * brickSize, brickSize, brickSize);
+	        g.drawImage(cancel, -brickSize, anagramOn * brickSize, brickSize, brickSize, gb);
+	        
+        }
+        
+        // Modificateur
+        Modificator modificator = gb.getPlayer(player).getModificator();
+        if(modificator.isVisible() && gb.getPlayers().length > 1) {
+        	g.drawImage(modificator.getIcon(), brickSize * modificator.getPosition().x, brickSize * modificator.getPosition().y, brickSize, brickSize, gb);
         }
         
         for(int i = 0; i < indice + 1; ++i) {
@@ -78,6 +99,14 @@ public class GameScreen {
         
         // Polyomino suivant
         polyominos.get(indice + 1).drawNext(g, brickSize);
+        
+        // Réserve
+        g.setColor(Color.black);
+        g.fillRect(brickSize * 10 + brickSize / 2, brickSize * 4, brickSize * 2  + brickSize / 2, brickSize * 2 + brickSize / 2);
+        Reserve reserve = gb.getPlayer(player).getReserve();
+        if(!reserve.isEmpty() && reserve.getModificator().isVisible() && gb.getPlayers().length > 1) {
+	        g.drawImage(reserve.getModificator().getIcon(), brickSize * 11, brickSize * 4 + brickSize / 2, brickSize * 2 - brickSize / 2, brickSize * 2 - brickSize / 2, gb);
+        }
         
         int level = (linesDestroyed / 10) + 1;
         if(level > 10) level = 10;

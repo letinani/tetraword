@@ -12,6 +12,8 @@ import polyominos.Polyomino;
 import polyominos.PolyominoPattern;
 import menus.GameScreen;
 import menus.Gameboard;
+import modificators.Modificator;
+import modificators.Reserve;
 
 public class Player extends Thread {
 	
@@ -29,6 +31,8 @@ public class Player extends Thread {
 	private static boolean anagramModeOn;
 	private boolean over;
 	private boolean win;
+	private Modificator modificator;
+	private Reserve reserve;
 	
 	public Player(LinkedList<PolyominoPattern> polyominosPatterns, LinkedList<Letter[]> lettersPatterns, String[] words, int player, Gameboard gb) {
 		this.polyominosPatterns = polyominosPatterns;
@@ -53,6 +57,9 @@ public class Player extends Thread {
 		
 		setOver(false);
 		setWin(false);
+		
+		modificator = new Modificator();
+		reserve = new Reserve();
 	}
 	
 	@Override
@@ -62,6 +69,11 @@ public class Player extends Thread {
 		    this.setTime(this.getTime() + this.getSpeed());
 		    
 		    if(!isWin() && !isOver()) tetris();
+		    if(modificator.collision(getCurrentPolyomino()) && reserve.isEmpty()) {
+		    	reserve.copyModificator(modificator);
+		    	modificator.createModificator();
+		    	gb.repaint();
+		    }
 		    
 		    Long end = System.currentTimeMillis();
 		    // On attend pour respecter le nombre d'images par seconde.
@@ -83,6 +95,8 @@ public class Player extends Thread {
 		if(this.getTime() >= Player.framePerSecond / ((elements.getLinesDestroyed() / 10) + 1)) {
 	    	this.setTime(0);
 	    		
+	    	modificator.update();
+	    	
 		    	Polyomino current = getCurrentPolyomino();
 		    	
 		    	if(tryMove(current, "down", 1)) {
@@ -405,6 +419,22 @@ public class Player extends Thread {
 
 	public void setWin(boolean win) {
 		this.win = win;
+	}
+
+	public Modificator getModificator() {
+		return modificator;
+	}
+
+	public void setModificator(Modificator modificator) {
+		this.modificator = modificator;
+	}
+	
+	public Reserve getReserve() {
+		return reserve;
+	}
+
+	public void setReserve(Reserve reserve) {
+		this.reserve = reserve;
 	}
 
 }

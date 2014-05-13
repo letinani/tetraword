@@ -86,7 +86,7 @@ public class Polyomino {
         g.translate(11 * brickSize - brickSize/2, brickSize);
         g.setColor(Color.black);
         g.fillRect(0, 0, brickSize*2 + brickSize/2, brickSize*2 + brickSize/2);
-        g.translate(brickSize/4, brickSize/4);
+        g.translate(brickSize/4 + brickSize / 2, brickSize/4 + brickSize / 2);
         for(int i = 0; i < this.getNumberOfBricks(); ++i) {
         	this.getBrick(i).drawNext(g, brickSize, bricks.size(), new Color(this.getColor()));
         }

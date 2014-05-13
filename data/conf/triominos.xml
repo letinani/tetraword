@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <polyominos number="2">
     <polyomino color="16711680">
+        <point x="0" y="-1" />
         <point x="0" y="0" />
-        <point x="0" y="1" />
-        <point x="0" y="2" />
+        <point x="0" y="-1" />
     </polyomino>
     <polyomino color="16744">
         <point x="0" y="0" />

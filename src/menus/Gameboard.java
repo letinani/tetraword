@@ -19,6 +19,7 @@ import control.SoundEffect;
 import polyominos.Letter;
 import polyominos.PolyominoPattern;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -187,7 +188,7 @@ public class Gameboard extends JPanel implements Observer {
         for(int i = 0; i < players.length; ++i) {
         	g.translate(this.getWidth() / players.length * i, 0);
         	
-        	players[i].getGameScreen().draw(g, this.getWidth() / players.length, this.getHeight(), players[i].getIndice(), players[i].isOver());
+        	players[i].getGameScreen().draw(g, this.getWidth() / players.length, this.getHeight(), players[i].getIndice(), players[i].isOver(), this);
         	g.translate(-this.getWidth() * i / players.length, 0);
         	
         	if(players[i].isOver()) {
@@ -200,7 +201,7 @@ public class Gameboard extends JPanel implements Observer {
         if(nbLosers == players.length - 1 && players.length > 1) {
         	// arret de la musique de fond
         	SoundEffect.MUSIC.stop();
-        	//affichage des rŽsultats
+        	//affichage des rï¿½sultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
@@ -213,7 +214,7 @@ public class Gameboard extends JPanel implements Observer {
         } else if(nbLosers == players.length && players.length > 1) {
         	// arret de la musique de fond
         	SoundEffect.MUSIC.stop();
-        	//affichage des rŽsultats
+        	//affichage des rï¿½sultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
@@ -226,7 +227,7 @@ public class Gameboard extends JPanel implements Observer {
         	SoundEffect.MUSIC.stop();
         	// bruitage
     		SoundEffect.LOOSE.play();
-    		//affichage des rŽsultats
+    		//affichage des rï¿½sultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
