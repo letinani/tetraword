@@ -90,7 +90,7 @@ public class Polyomino {
         for(int i = 0; i < this.getNumberOfBricks(); ++i) {
         	this.getBrick(i).drawNext(g, brickSize, bricks.size(), new Color(this.getColor()));
         }
-        g.translate(-brickSize/4, -brickSize/4);
+        g.translate(-(brickSize/4  + brickSize / 2), -(brickSize/4  + brickSize / 2));
         g.translate(-11 * brickSize + brickSize/2, -brickSize);
     }
 	

@@ -65,7 +65,7 @@ public class GameScreen {
 		
         this.setWidth(width);
 		if(width * 2 > height) width = height * 10 / 16;
-		brickSize = width / 16;
+		brickSize = width / 15;
 		
 		// Titre
 		g.setColor(Color.white);
@@ -137,10 +137,10 @@ public class GameScreen {
         // Réserve
         if(gb.getPlayers().length > 1) {
 	        g.setColor(Color.black);
-	        g.fillRect(brickSize * 10, brickSize * 4 - brickSize / 2, brickSize * 2  + brickSize / 2, brickSize * 2 + brickSize / 2);
+	        g.fillRect(brickSize * 10 + brickSize / 2, brickSize * 4, brickSize * 2  + brickSize / 2, brickSize * 2 + brickSize / 2);
 	        Reserve reserve = gb.getPlayer(player).getReserve();
 	        if(!reserve.isEmpty() && reserve.getModificator().isVisible()) {
-		        g.drawImage(reserve.getModificator().getIcon(), brickSize * 11 - brickSize / 2, brickSize * 4, brickSize * 2 - brickSize / 2, brickSize * 2 - brickSize / 2, gb);
+		        g.drawImage(reserve.getModificator().getIcon(), brickSize * 11, brickSize * 4 + brickSize / 2, brickSize * 2 - brickSize / 2, brickSize * 2 - brickSize / 2, gb);
 	        }
 		}
         
@@ -157,6 +157,7 @@ public class GameScreen {
         g.drawString("Nb.", brickSize * 11, brickSize * 12);
         g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize));
         g.drawString(Integer.toString(linesDestroyed % 10), brickSize * 11, brickSize * 13);
+        
         g.translate(-brickSize * 2, -brickSize * 2);
     }
 	
