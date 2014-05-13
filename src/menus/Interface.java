@@ -77,7 +77,7 @@ public class Interface extends JFrame implements Observer {
     }
 
 	@Override
-	public void update(Observable obs, Object obj) { // Fonction qui sert à récupérer les clics des boutons du menu
+	public void update(Observable obs, Object obj) { // Fonction qui sert �� r��cup��rer les clics des boutons du menu
 		
 		ObservableButton button = (ObservableButton) obs;
 		

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
 <project default = "jar">
 	<property name="name" value="Tetraword" />
 	<property name="authors" value="Thibault Fievet, Elena Loyatho, Laetitia Nanni" />
@@ -22,7 +23,7 @@
 		description="Create a jar file containing the classes">
 		<delete file="MANIFEST.MF"/>
 		<manifest file="MANIFEST.MF">
-	        <attribute name="Built-By" value="${user.name}"/>
+	        <attribute name="Built-By" value="${author}"/>
 	        <attribute name="Main-Class" value="Main"/>
 		</manifest>
 		<jar destfile="${build.jar}"
