@@ -1,0 +1,36 @@
+<project default = "jar">
+	<property name="name" value="Tetraword" />
+	<property name="authors" value="Thibault Fievet, Elena Loyatho, Laetitia Nanni" />
+	<property name="src.dir" value="src"/>
+	<property name="bin.dir" value="bin"/>
+	<property name="build.dir" value="build"/>
+	<property name="build.jar" value="${name}.jar"/>
+	<property name="manifest" value="MANIFEST.MF"/>
+
+	<target name="clean" description="remove old files">
+		<delete dir="${build.jar}"/>
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="${bin.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false"/>
+	</target>
+
+
+	<target name="jar"
+		depends="compile"
+		description="Create a jar file containing the classes">
+		<delete file="MANIFEST.MF"/>
+		<manifest file="MANIFEST.MF">
+	        <attribute name="Built-By" value="${user.name}"/>
+	        <attribute name="Main-Class" value="Main"/>
+		</manifest>
+		<jar destfile="${build.jar}"
+	              basedir="${bin.dir}"
+	              manifest="${manifest}">
+			<zipgroupfileset dir="data/lib" includes="*.jar" />
+
+		</jar>
+	</target>
+
+</project>
