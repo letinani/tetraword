@@ -59,7 +59,8 @@ public class Player extends Thread {
 		setWin(false);
 		
 		modificator = new Modificator();
-		reserve = new Reserve();
+		reserve = new Reserve(gb);
+		reserve.start();
 	}
 	
 	@Override
@@ -92,7 +93,19 @@ public class Player extends Thread {
 		SoundEffect.init();
 	    SoundEffect.volume = SoundEffect.Volume.LOW;  
 		
-		if(this.getTime() >= Player.framePerSecond / ((elements.getLinesDestroyed() / 10) + 1)) {
+	    if((int) this.getTime() % 3 == 0) {
+		    if(reserve.isFired() && reserve.getModificator().getType() == 3)
+		    	elements.setScore(elements.getScore() + 1);
+		    
+		    if(reserve.isFired() && reserve.getModificator().getType() == 4)
+			    elements.setScore(elements.getScore() - 1);
+	    }
+	    
+	    
+	    int bonusTime = 1;
+	    if(reserve.isFired() && reserve.getModificator().getType() == 1)  bonusTime = 2;
+	    
+		if(this.getTime() >= Player.framePerSecond * bonusTime / ((elements.getLinesDestroyed() / 10) + 1)) {
 	    	this.setTime(0);
 	    		
 	    	modificator.update();
@@ -100,6 +113,16 @@ public class Player extends Thread {
 		    	Polyomino current = getCurrentPolyomino();
 		    	
 		    	if(tryMove(current, "down", 1)) {
+		    		HashMap<Integer, Integer> modifs = gb.modificationMap();
+		    		if(!modifs.containsKey(numPlayer) && modifs.containsValue(5)) {
+		    			if(tryMove(current, "right", 1)) {
+		    				current.setPosition(current.getPosition().x + 1, current.getPosition().y);
+		    			}
+		    		} else if(!modifs.containsKey(numPlayer) && modifs.containsValue(6)) {
+		    			if(tryMove(current, "left", -1)) {
+		    				current.setPosition(current.getPosition().x - 1, current.getPosition().y);
+		    			}
+		    		}
 		    		current.setPosition(current.getPosition().x, current.getPosition().y + 1);
 		    	} else {
 		    		int nbLinesDestroyed = destroyLines();

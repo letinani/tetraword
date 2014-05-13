@@ -3,9 +3,11 @@ package menus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -20,6 +22,9 @@ public class GameScreen {
 
 	private PolyominoList polyominos;
 	private int linesDestroyed;
+	
+
+	private static final double PI = 3.1415926536;
 	
 	private int anagramOn;
 	private int score;
@@ -60,7 +65,7 @@ public class GameScreen {
 		
         this.setWidth(width);
 		if(width * 2 > height) width = height * 10 / 16;
-		brickSize = width / 15;
+		brickSize = width / 16;
 		
 		// Titre
 		g.setColor(Color.white);
@@ -68,16 +73,34 @@ public class GameScreen {
         g.drawString("Joueur " + Integer.toString(player + 1), brickSize * 4, brickSize * 3 / 2);
         
         
-        //On choisit une couleur de fond pour le rectangle
-        g.setColor(Color.black);
-        //On le dessine de sorte qu'il recouvre la surface du jeu
         g.translate(brickSize * 2, brickSize * 2);
-        g.fillRect(0, 0, brickSize * 10, brickSize * 20);
         
         // Score.
         g.setColor(Color.white);
         g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize));
 		g.drawString(Integer.toString(score), 0, 21 * brickSize + brickSize / 2);
+		
+		
+		
+		int xRand = gb.randomNumber(-brickSize, brickSize);
+    	int yRand = gb.randomNumber(-brickSize, brickSize);
+    	
+    	HashMap<Integer, Integer> modifs = gb.modificationMap();
+    	
+    	if(!modifs.containsKey(player) && modifs.containsValue(0)) {
+    		g.translate(xRand, yRand);
+    	} 
+    	if(!modifs.containsKey(player) && modifs.containsValue(2)) {
+    		Graphics2D g2d = (Graphics2D) g;
+    		g2d.rotate(PI);
+    		g.translate(-brickSize * 10, -brickSize * 20);
+    	}
+    	
+    	
+    	//On choisit une couleur de fond pour le rectangle
+        g.setColor(Color.black);
+        //On le dessine de sorte qu'il recouvre la surface du jeu
+        g.fillRect(0, 0, brickSize * 10, brickSize * 20);
 		
         
         if(anagramOn > 0) {
@@ -97,16 +120,29 @@ public class GameScreen {
         	polyominos.get(i).draw(g, brickSize, anagramOn, bricksClicked, gameOver);
         }
         
+        if(!modifs.containsKey(player) && modifs.containsValue(2)) {
+    		Graphics2D g2d = (Graphics2D) g;
+    		g.translate(brickSize * 10, brickSize * 20);
+    		g2d.rotate(-PI);
+    	}
+        if(!modifs.containsKey(player) && modifs.containsValue(0)) {
+    		g.translate(-xRand, -yRand);
+    	} 
+    	
+    	
+        
         // Polyomino suivant
         polyominos.get(indice + 1).drawNext(g, brickSize);
         
         // Réserve
-        g.setColor(Color.black);
-        g.fillRect(brickSize * 10 + brickSize / 2, brickSize * 4, brickSize * 2  + brickSize / 2, brickSize * 2 + brickSize / 2);
-        Reserve reserve = gb.getPlayer(player).getReserve();
-        if(!reserve.isEmpty() && reserve.getModificator().isVisible() && gb.getPlayers().length > 1) {
-	        g.drawImage(reserve.getModificator().getIcon(), brickSize * 11, brickSize * 4 + brickSize / 2, brickSize * 2 - brickSize / 2, brickSize * 2 - brickSize / 2, gb);
-        }
+        if(gb.getPlayers().length > 1) {
+	        g.setColor(Color.black);
+	        g.fillRect(brickSize * 10, brickSize * 4 - brickSize / 2, brickSize * 2  + brickSize / 2, brickSize * 2 + brickSize / 2);
+	        Reserve reserve = gb.getPlayer(player).getReserve();
+	        if(!reserve.isEmpty() && reserve.getModificator().isVisible()) {
+		        g.drawImage(reserve.getModificator().getIcon(), brickSize * 11 - brickSize / 2, brickSize * 4, brickSize * 2 - brickSize / 2, brickSize * 2 - brickSize / 2, gb);
+	        }
+		}
         
         int level = (linesDestroyed / 10) + 1;
         if(level > 10) level = 10;

@@ -16,7 +16,6 @@ public class Modificator {
 	
 	private int delay;
 	private Point position;
-	private BufferedImage backgroundImage;
 	private boolean visible;
 	private int nbTypes;
 	private int type;
@@ -24,20 +23,14 @@ public class Modificator {
 
 	public Modificator() {
 		
-		try {
-			setBackgroundImage(ImageIO.read(new File("data/img/item.jpg")));
-  	    } catch(IOException e) {
-  	    	e.printStackTrace();
-  	    }
-		
 		createModificator();
 	}
 	
 	public void createModificator() {
-		setDelay(randomNumber(10, 30));
+		setDelay(randomNumber(7, 15));
 		setPosition(new Point(randomNumber(0, 8), randomNumber(0, 18)));
 		setVisible(false);
-		setNbTypes(2);
+		setNbTypes(7);
 		setType(randomNumber(0, getNbTypes() - 1));
 		setIcon(modificatorType(getType()));
 	}
@@ -46,9 +39,19 @@ public class Modificator {
 		try {
 			switch(t) {
 				case 0: 
-					return ImageIO.read(new File("data/img/modificator.jpg"));
+					return ImageIO.read(new File("data/img/wave.jpg"));
 				case 1:
 					return ImageIO.read(new File("data/img/chrono.jpg"));
+				case 2:
+					return ImageIO.read(new File("data/img/reversal.jpg"));
+				case 3:
+					return ImageIO.read(new File("data/img/bonus.jpg"));
+				case 4:
+					return ImageIO.read(new File("data/img/malus.jpg"));
+				case 5:
+					return ImageIO.read(new File("data/img/right_wind.jpg"));
+				case 6:
+					return ImageIO.read(new File("data/img/left_wind.jpg"));
 			}
 		} catch(IOException e) {
   	    	e.printStackTrace();
@@ -71,6 +74,8 @@ public class Modificator {
 			setVisible(true);
 		} else if(delay == -14) {
 			setVisible(false);
+		} else if(delay < -15) {
+			createModificator();
 		}
 	}
 	
@@ -80,7 +85,6 @@ public class Modificator {
 		while(itr.hasNext()) {
 			Brick b = (Brick) itr.next();
 			if(b.getAbsoluteCoords().x == position.x && b.getAbsoluteCoords().y == position.y) {
-				setVisible(false);
 				return true;
 			}
 		}
@@ -114,14 +118,6 @@ public class Modificator {
 
 	public void setPosition(Point position) {
 		this.position = position;
-	}
-
-	public BufferedImage getBackgroundImage() {
-		return backgroundImage;
-	}
-
-	public void setBackgroundImage(BufferedImage backgroundImage) {
-		this.backgroundImage = backgroundImage;
 	}
 
 	public boolean isVisible() {

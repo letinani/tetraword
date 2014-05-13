@@ -3,6 +3,7 @@ package menus;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +25,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
@@ -183,13 +185,14 @@ public class Gameboard extends JPanel implements Observer {
         int nbLosers = 0;
         int winner = 0;
         
-        
-        
         for(int i = 0; i < players.length; ++i) {
+        	
         	g.translate(this.getWidth() / players.length * i, 0);
         	
         	players[i].getGameScreen().draw(g, this.getWidth() / players.length, this.getHeight(), players[i].getIndice(), players[i].isOver(), this);
-        	g.translate(-this.getWidth() * i / players.length, 0);
+        	
+        	g.translate(-this.getWidth() / players.length * i, 0);
+        	
         	
         	if(players[i].isOver()) {
         		++nbLosers;
@@ -236,6 +239,23 @@ public class Gameboard extends JPanel implements Observer {
         	g.setFont(minecraftia.deriveFont(Font.PLAIN, this.getWidth() / 40));
         	g.drawString("Appuyez sur Entrée", this.getWidth() / 3, this.getHeight() * 3 / 5);
         }
+	}
+	
+	public HashMap<Integer, Integer> modificationMap() {
+		HashMap<Integer, Integer> modifs = new HashMap<Integer, Integer>();
+        for(int i = 0; i < players.length; ++i) {
+        	if(players[i].getReserve().isFired() && players[i].getReserve().getModificator().getType() == 0) {
+        		modifs.put(i, 0);
+        	} else if(players[i].getReserve().isFired() && players[i].getReserve().getModificator().getType() == 2) {
+        		modifs.put(i, 2);
+        	} else if(players[i].getReserve().isFired() && players[i].getReserve().getModificator().getType() == 5) {
+        		modifs.put(i, 5);
+        	} else if(players[i].getReserve().isFired() && players[i].getReserve().getModificator().getType() == 6) {
+        		modifs.put(i, 6);
+        	}
+        }
+        
+        return modifs;
 	}
 	
 	@Override

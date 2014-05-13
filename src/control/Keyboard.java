@@ -72,7 +72,7 @@ public class Keyboard extends KeyAdapter {
 			            
 			        case KeyEvent.VK_SPACE:
 			        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
-			        		iface.getGameboard().getPlayer(i).getReserve().action();
+			        		iface.getGameboard().getPlayer(i).getReserve().setFired(true);
 			        	}
 			            break;
 		        }
@@ -122,8 +122,11 @@ public class Keyboard extends KeyAdapter {
 			        	iface.getGameboard().repaint();
 			            break;
 			            
-			        /*case KeyEvent.VK_SPACE:
-			            break;*/
+			        case KeyEvent.VK_W:
+			        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
+			        		iface.getGameboard().getPlayer(i).getReserve().setFired(true);
+			        	}
+			            break;
 		        }
         	} else if(i == 2) {
         		switch (keycode) {
@@ -171,8 +174,11 @@ public class Keyboard extends KeyAdapter {
 		        	iface.getGameboard().repaint();
 		            break;
 		            
-		        /*case KeyEvent.VK_SPACE:
-		            break;*/
+		        case KeyEvent.VK_B:
+		        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
+		        		iface.getGameboard().getPlayer(i).getReserve().setFired(true);
+		        	}
+		            break;
         		}
 	        } else if(i == 3) {
         		switch (keycode) {
@@ -220,8 +226,11 @@ public class Keyboard extends KeyAdapter {
 		        	iface.getGameboard().repaint();
 		            break;
 		            
-		        /*case KeyEvent.VK_SPACE:
-		            break;*/
+		        case KeyEvent.VK_SEMICOLON:
+		        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
+		        		iface.getGameboard().getPlayer(i).getReserve().setFired(true);
+		        	}
+		            break;
         		}
 	        }
         }
