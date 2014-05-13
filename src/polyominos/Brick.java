@@ -28,6 +28,37 @@ public class Brick {
 			else g.setColor(color);
 			g.fillRect((int) coords.getX() * brickSize, (int) coords.getY() * brickSize, brickSize, brickSize);
 			
+			if(anagramOn != getAbsoluteCoords().y) {
+				
+				g.setColor(surexpose(color, 192));
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize / 8, (int) coords.getY() * brickSize + brickSize - brickSize / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize * 2 / 8, (int) coords.getY() * brickSize + brickSize - brickSize / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize / 8, (int) coords.getY() * brickSize + brickSize - brickSize * 2 / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				
+				
+				g.setColor(surexpose(color, 128));
+				g.fillRect((int) coords.getX() * brickSize, (int) coords.getY() * brickSize, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize / 8, (int) coords.getY() * brickSize, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize, (int) coords.getY() * brickSize + brickSize / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize * 3 / 8, (int) coords.getY() * brickSize + brickSize - brickSize / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize / 8, (int) coords.getY() * brickSize + brickSize - brickSize * 3 / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize * 2 / 8, (int) coords.getY() * brickSize + brickSize - brickSize * 2 / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				
+				
+				g.setColor(surexpose(color, 64));
+				g.fillRect((int) coords.getX() * brickSize + brickSize * 2 / 8, (int) coords.getY() * brickSize, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize, (int) coords.getY() * brickSize + brickSize * 2 / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize / 8, (int) coords.getY() * brickSize + brickSize / 8 + 1, brickSize / 8 + 1, brickSize / 8 + 1);
+				
+				
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize / 8, (int) coords.getY() * brickSize + brickSize - brickSize * 4 / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize * 2 / 8, (int) coords.getY() * brickSize + brickSize - brickSize * 3 / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize * 3 / 8, (int) coords.getY() * brickSize + brickSize - brickSize * 2 / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize * 4 / 8, (int) coords.getY() * brickSize + brickSize - brickSize / 8, brickSize / 8 + 1, brickSize / 8 + 1);
+				
+			}
+			
 			if(anagramOn == getAbsoluteCoords().y && !clicked) g.setColor(Color.red);
 			else g.setColor(Color.white);
 			g.drawRect((int) coords.getX() * brickSize, (int) coords.getY() * brickSize, brickSize, brickSize);
@@ -46,6 +77,17 @@ public class Brick {
 		g.drawRect((int) coords.getX() * brickSize*2/nbBricks + brickSize/nbBricks, (int) coords.getY() * brickSize*2/nbBricks + brickSize/nbBricks, brickSize*2/nbBricks, brickSize*2/nbBricks);
 		g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize / 3));
 		g.drawString(letter.getValue(), (int) coords.getX() * brickSize*2/nbBricks + brickSize*3/2/nbBricks, (int) coords.getY() * brickSize*2/nbBricks + brickSize*5/2/nbBricks);
+	}
+	
+	public Color surexpose(Color color, int level) {
+		int red = color.getRed() + level;
+		if(red > 255) red = 255;
+		int green = color.getGreen() + level;
+		if(green > 255) green = 255;
+		int blue = color.getBlue() + level;
+		if(blue > 255) blue = 255;
+		
+		return new Color(red, green, blue);
 	}
 	
 	public Point getCoords() {
