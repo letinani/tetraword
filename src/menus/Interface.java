@@ -145,7 +145,7 @@ public class Interface extends JFrame implements Observer {
 		this.repaint();
 	}
 	
-	public void endGame() { // Exécutée quand le jeu se termine
+	public void endGame() { // Exécuée quand le jeu se termine
 		getContentPane().remove(gb);
 		getContentPane().add(mainMenu);
 		
@@ -156,14 +156,6 @@ public class Interface extends JFrame implements Observer {
 	public Gameboard getGameboard() {
 		return gb;
 	}
-	public static void main(String[] args) {
-		Interface tetraword = new Interface(800, 600);
-		tetraword.pack();
-		tetraword.setVisible(true);
-		SoundEffect.init();
-	    SoundEffect.volume = SoundEffect.Volume.LOW;  
-		SoundEffect.WELCOME.play();
 
-	}
 
 }
