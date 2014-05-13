@@ -1,6 +1,5 @@
 package menus;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,7 +18,7 @@ public class Interface extends JFrame implements Observer {
 	private int widthScreen;
 	private int heightScreen;
 	private Menu mainMenu;
-	private MenuInGame subMenu;
+	//private MenuInGame subMenu;
 	private Gameboard gb;
 	private Options options;
 	private BufferedReader reader;
@@ -85,7 +84,7 @@ public class Interface extends JFrame implements Observer {
 		if(button.getText() == "Solo") {
 			gb = new Gameboard(options.getPolyominoType(), (short) 1, words);
 			/*subMenu = new MenuInGame();
-			getContentPane().add(subMenu, BorderLayout.SOUTH);*/
+			getContentPane().add(subMenu);*/
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
