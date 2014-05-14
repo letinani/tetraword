@@ -4,13 +4,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import menus.Interface;
-import menus.MenuInGame;
 import polyominos.Polyomino;
 
 public class Keyboard extends KeyAdapter {
 	
 	private Interface iface;
-	private MenuInGame subMenu = new MenuInGame();
 	
 	public Keyboard(Interface iface) {
 		this.iface = iface;
@@ -251,7 +249,7 @@ public class Keyboard extends KeyAdapter {
         		if(test) iface.endGame();
         		break;
         	case KeyEvent.VK_ESCAPE:
-        		if (iface.getIsPaused() == true) {
+        		if (Interface.getIsPaused() == true) {
         			iface.backtoGame();
         		}
         		else {

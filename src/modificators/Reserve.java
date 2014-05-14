@@ -1,5 +1,6 @@
 package modificators;
 
+import control.SoundEffect;
 import menus.Gameboard;
 
 public class Reserve extends Thread {
@@ -106,6 +107,7 @@ public class Reserve extends Thread {
 	}
 
 	public void setFired(boolean fired) {
+		SoundEffect.APPLY_MODIF.play();
 		this.fired = fired;
 	}
 

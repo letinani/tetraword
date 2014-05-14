@@ -24,8 +24,8 @@ public class Player extends Thread {
 	private double time;
 	
 	private GameScreen elements;
-	private LinkedList<PolyominoPattern> polyominosPatterns;
-	private LinkedList<Letter[]> lettersPatterns;
+	LinkedList<PolyominoPattern> polyominosPatterns;
+	LinkedList<Letter[]> lettersPatterns;
 	private int indice;
 	private HashSet<String> words;
 	private Gameboard gb;
@@ -77,6 +77,7 @@ public class Player extends Thread {
 		    if(modificator.collision(getCurrentPolyomino()) && reserve.isEmpty()) {
 		    	reserve.copyModificator(modificator);
 		    	modificator.createModificator();
+		    	SoundEffect.GET_MODIF.play();
 		    	gb.repaint();
 		    }
 		    
@@ -101,12 +102,16 @@ public class Player extends Thread {
 		SoundEffect.init();
 	    SoundEffect.volume = SoundEffect.Volume.LOW;  
 		
-	    if((int) this.getTime() % 3 == 0) {
-		    if(reserve.isFired() && reserve.getModificator().getType() == 3)
+	    if((int) this.getTime() % 6 == 0) {
+		    if(reserve.isFired() && reserve.getModificator().getType() == 3) {
 		    	elements.setScore(elements.getScore() + 1);
+		    	SoundEffect.BONUS.play();
+		    }
 		    
-		    if(reserve.isFired() && reserve.getModificator().getType() == 4)
+		    if(reserve.isFired() && reserve.getModificator().getType() == 4) {
 			    elements.setScore(elements.getScore() - 1);
+		    	SoundEffect.MALUS.play();
+		    }
 	    }
 	    
 	    
@@ -298,6 +303,7 @@ public class Player extends Thread {
 			for(int i = 0; i < current.getNumberOfBricks(); ++i) {
 				current.getBrick(i).setCoords(new Point(tmpCoords[i].x,tmpCoords[i].y));
 			}
+			return false;
 		}
 		
 		return true;
@@ -346,7 +352,7 @@ public class Player extends Thread {
 					}
 				}
 				
-				if(!isAnagramModeOn()) anagram(bricksToDelete);
+				if(!isAnagramModeOn() && !(this instanceof Bot)) anagram(bricksToDelete);
 		    }
 		}
 		
@@ -455,6 +461,10 @@ public class Player extends Thread {
 	
 	public int getIndice() {
 		return indice;
+	}
+	
+	public void setIndice(int indice) {
+		this.indice = indice;
 	}
 
 	public static boolean isAnagramModeOn() {
