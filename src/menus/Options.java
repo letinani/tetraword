@@ -29,6 +29,7 @@ public class Options extends JPanel {
 	private ObservableButton returnButton;
 	private short polyominoType;
 	private Font minecraftia;
+	private int probability;
 
 	public Options() {
 		this.minecraftia = TFont.loadFont("data/font/Minecraftia.ttf");
@@ -168,6 +169,14 @@ public class Options extends JPanel {
 
 	public ObservableButton getReturnButton() {
 		return returnButton;
+	}
+	
+	public void setProbability(int probability) {
+		this.probability = probability;
+	}
+	
+	public int getProbability() {
+		return probability;
 	}
 
 }
