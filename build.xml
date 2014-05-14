@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
-<project default = "jar">
+<project default = "tetrajar">
 	<property name="name" value="Tetraword" />
 	<property name="authors" value="Thibault Fievet, Elena Loyatho, Laetitia Nanni" />
 	<property name="src.dir" value="src"/>
@@ -18,7 +18,7 @@
 	</target>
 
 
-	<target name="jar"
+	<target name="tetrajar"
 		depends="compile"
 		description="Create a jar file containing the classes">
 		<delete file="MANIFEST.MF"/>
