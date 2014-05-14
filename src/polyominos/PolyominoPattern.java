@@ -1,8 +1,11 @@
 package polyominos;
 
 import java.awt.Point;
+import java.io.Serializable;
 
-public class PolyominoPattern {
+public class PolyominoPattern implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Point[] coords;
 	private int color;
 	

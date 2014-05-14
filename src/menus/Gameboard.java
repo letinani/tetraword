@@ -3,6 +3,7 @@ package menus;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -22,19 +23,17 @@ import control.SoundEffect;
 import polyominos.Letter;
 import polyominos.PolyominoPattern;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class Gameboard extends JPanel implements Observer {
+public class Gameboard extends JPanel implements Observer, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private short polyominoType;
@@ -49,10 +48,10 @@ public class Gameboard extends JPanel implements Observer {
 	private LinkedList<Letter[]> lettersPatterns;
 	private HashSet<String> words;
 	private Font minecraftia;
-	private BufferedImage backgroundImage;
-
-
+	transient private BufferedImage backgroundImage;
+ 
 	private Player[] players;
+	
 
 	public Gameboard(short n, short nbPlayers, HashSet<String> words, boolean bot) {
         try {
@@ -174,6 +173,7 @@ public class Gameboard extends JPanel implements Observer {
 					this.players[j].getGameScreen().getPolyominoList().addObserver(this);
 				}
 			}
+    	
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found.");

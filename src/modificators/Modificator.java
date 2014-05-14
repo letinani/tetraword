@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -12,14 +13,15 @@ import javax.imageio.ImageIO;
 import polyominos.Brick;
 import polyominos.Polyomino;
 
-public class Modificator {
-	
+public class Modificator implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int delay;
 	private Point position;
 	private boolean visible;
 	private int nbTypes;
 	private int type;
-	private BufferedImage icon;
+	transient private BufferedImage icon;
 
 	public Modificator() {
 		
@@ -27,11 +29,11 @@ public class Modificator {
 	}
 	
 	public void createModificator() {
-		setDelay(randomNumber(15, 30));
+		setDelay(randomNumber(7, 15));
 		setPosition(new Point(randomNumber(0, 8), randomNumber(0, 18)));
 		setVisible(false);
 		setNbTypes(8);
-		setType(randomNumber(0, getNbTypes() - 1));
+		setType(randomNumber(7, getNbTypes() - 1));
 		setIcon(modificatorType(getType()));
 	}
 	

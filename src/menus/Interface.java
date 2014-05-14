@@ -2,8 +2,14 @@ package menus;
 
 import java.awt.Dimension;
 import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
@@ -11,7 +17,6 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import control.Keyboard;
-import control.SoundEffect;
 
 public class Interface extends JFrame implements Observer {
 
@@ -27,6 +32,9 @@ public class Interface extends JFrame implements Observer {
 	private int nbWords;
 	private HashSet<String> words;
 	
+	transient public FileOutputStream fos;
+    transient public FileInputStream fis;
+	
 	public Interface(int widthScreen, int heightScreen) {
 		this.widthScreen = widthScreen;
 		this.heightScreen = heightScreen;
@@ -37,6 +45,8 @@ public class Interface extends JFrame implements Observer {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setFocusable(true);
+		
+		
 		
 		// On crée les éléments du jeu
 		mainMenu = new Menu();
@@ -56,6 +66,8 @@ public class Interface extends JFrame implements Observer {
 		options.getReturnButton().addObserver(this);
 		
 		subMenu = new MenuInGame();
+		subMenu.getQuitButton().addObserver(this);
+		subMenu.getMenuButton().addObserver(this);
 
 		try {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));
@@ -72,6 +84,15 @@ public class Interface extends JFrame implements Observer {
 		}
 		
 		addKeyListener(new Keyboard(this));
+		
+		try {
+			fis = new FileInputStream("data/conf/save.txt");
+			fos = new FileOutputStream("data/conf/save.txt");
+			
+		} catch (Exception e) {
+			mainMenu.getLoadButton().getButton().setEnabled(false);
+			e.printStackTrace();
+		}
 
 	}
 	
@@ -87,8 +108,6 @@ public class Interface extends JFrame implements Observer {
 		
 		if(button.getText() == "Solo") {
 			gb = new Gameboard(options.getPolyominoType(), (short) 1, words, false);
-			/*subMenu = new MenuInGame();
-			getContentPane().add(subMenu);*/
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
@@ -146,13 +165,22 @@ public class Interface extends JFrame implements Observer {
 		} else if(button.getText() == "Retour") {
 			getContentPane().remove(options);
 			getContentPane().add(mainMenu);
+		} else if(button.getText() == "Quitter") {
+			System.exit(0);
+		} else if(button.getText() == "Menu") {
+			for(int i = 0; i < gb.getPlayers().length; ++i) {
+				gb.getPlayer(i).setOver(true);
+			}
+			getContentPane().remove(subMenu);
+			endGame();
+			
 		}
 		
 		this.validate();
 		this.repaint();
 	}
 	
-	public void endGame() { // Exécuée quand le jeu se termine
+	public void endGame() { // Exécutée quand le jeu se termine
 		getContentPane().remove(gb);
 		getContentPane().add(mainMenu);
 		
@@ -162,9 +190,11 @@ public class Interface extends JFrame implements Observer {
 	
 	public void pauseGame() { // Exécutée quand le jeu est en pause
 		isPaused = true;
-
-		getContentPane().remove(gb);
-		getContentPane().add(subMenu);
+		
+		if(gb != null) {
+			getContentPane().remove(gb);
+			getContentPane().add(subMenu);
+		}
 
 		this.validate();
 		this.repaint();
@@ -172,8 +202,11 @@ public class Interface extends JFrame implements Observer {
 	}
 	public void backtoGame() { // Exécutée quand le jeu est en pause
 		isPaused = false;
-		getContentPane().remove(subMenu);
-		getContentPane().add(gb);
+		
+		if(gb != null) {
+			getContentPane().remove(subMenu);
+			getContentPane().add(gb);
+		}
 
 		this.validate();
 		this.repaint();

@@ -1,6 +1,7 @@
 package control;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -17,8 +18,9 @@ import menus.Interface;
 import modificators.Modificator;
 import modificators.Reserve;
 
-public class Player extends Thread {
-	
+public class Player extends Thread implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private static final int framePerSecond = 30;
 	private double speed;
 	private double time;
@@ -32,6 +34,7 @@ public class Player extends Thread {
 	private int numPlayer;
 	private static boolean anagramModeOn;
 	private static boolean wordleModeOn;
+	private boolean wordleOn;
 	private boolean over;
 	private boolean win;
 	private Modificator modificator;
@@ -65,11 +68,17 @@ public class Player extends Thread {
 		modificator = new Modificator();
 		reserve = new Reserve(gb);
 		reserve.start();
+		
+		SoundEffect.init();
+	    SoundEffect.volume = SoundEffect.Volume.LOW;  
+		
 	}
 	
 	@Override
 	public void run() {
-		while(!Thread.interrupted() && !Interface.getIsPaused()) {
+		while(!Thread.interrupted()) {
+			if(Interface.getIsPaused()) continue;
+			
 			Long start = System.currentTimeMillis();
 		    this.setTime(this.getTime() + this.getSpeed());
 		    
@@ -99,8 +108,6 @@ public class Player extends Thread {
 	}
 	
 	public void tetris() {
-		SoundEffect.init();
-	    SoundEffect.volume = SoundEffect.Volume.LOW;  
 		
 	    if((int) this.getTime() % 6 == 0) {
 		    if(reserve.isFired() && reserve.getModificator().getType() == 3) {
@@ -212,7 +219,6 @@ public class Player extends Thread {
 			wordle.setCurrent(getCurrentPolyomino());
 			wordle.setNext(elements.getPolyomino(indice + 1));
 			
-			gb.repaint();
 			if(wordle.isValidate()) {
 				if(searchWord(wordle.getWord())) {
 					elements.setScore(elements.getScore() + wordle.getScore());
@@ -226,6 +232,8 @@ public class Player extends Thread {
 					break;
 				}
 			}
+			
+			gb.repaint();
 			
 			Long end = System.currentTimeMillis();
 		    // On attend pour respecter le nombre d'images par seconde.
@@ -479,8 +487,9 @@ public class Player extends Thread {
 		return wordleModeOn;
 	}
 	
-	private static void setWordleModeOn(boolean b) {
+	private void setWordleModeOn(boolean b) {
 		Player.wordleModeOn = b;
+		this.wordleOn = b;
 	}
 
 	public boolean isOver() {
@@ -525,6 +534,14 @@ public class Player extends Thread {
 	
 	public static int getFramePerSecond() {
 		return framePerSecond;
+	}
+
+	public boolean isWordleOn() {
+		return wordleOn;
+	}
+
+	public void setWordleOn(boolean wordleOn) {
+		this.wordleOn = wordleOn;
 	}
 
 }

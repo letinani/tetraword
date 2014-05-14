@@ -23,6 +23,7 @@ public class Menu extends JPanel {
 	private BufferedImage backgroundImage;
 	private ObservableButton soloButton;
 	private ObservableButton ordiButton;
+	private ObservableButton loadButton;
 	private ObservableButton twoButton;
 	private ObservableButton threeButton;
 	private ObservableButton fourButton;
@@ -139,6 +140,10 @@ public class Menu extends JPanel {
 	
 	public ObservableButton getOrdiButton() {
 		return ordiButton;
+	}
+	
+	public ObservableButton getLoadButton() {
+		return loadButton;
 	}
 
 	public ObservableButton getTwoButton() {

@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import menus.Gameboard;
+import menus.Interface;
 import polyominos.Brick;
 import polyominos.Letter;
 import polyominos.Polyomino;
@@ -14,6 +15,8 @@ import polyominos.PolyominoPattern;
 
 public class Bot extends Player {
 	
+
+	private static final long serialVersionUID = 1L;
 
 	public Bot(LinkedList<PolyominoPattern> polyominosPatterns, LinkedList<Letter[]> lettersPatterns, HashSet<String> words, int player, Gameboard gb) {
 		super(polyominosPatterns, lettersPatterns, words, player, gb);
@@ -23,10 +26,11 @@ public class Bot extends Player {
 	@Override
 	public synchronized void run() {
 		while(!Thread.interrupted()) {
+			if(Interface.getIsPaused()) continue;
 			Long start = System.currentTimeMillis();
 		    this.setTime(this.getTime() + this.getSpeed());
 		    
-		    if((int) this.getTime() % 10 == 0) control();
+		    if(!isWin() && !isOver() && (int) this.getTime() % 10 == 0) control();
 		    
 		    if(!isWin() && !isOver()) tetris();
 		    if(getModificator().collision(getCurrentPolyomino()) && getReserve().isEmpty()) {
@@ -52,64 +56,6 @@ public class Bot extends Player {
 				}
 		    }
 		}
-	}
-	
-	@Override
-	public void tetris() {
-		SoundEffect.init();
-	    SoundEffect.volume = SoundEffect.Volume.LOW;  
-		
-	    if((int) this.getTime() % 10 == 0) {
-		    if(getReserve().isFired() && getReserve().getModificator().getType() == 3) {
-		    	getGameScreen().setScore(getGameScreen().getScore() + 1);
-		    	SoundEffect.BONUS.play();
-		    }
-		    
-		    if(getReserve().isFired() && getReserve().getModificator().getType() == 4) {
-		    	getGameScreen().setScore(getGameScreen().getScore() - 1);
-		    	SoundEffect.MALUS.play();
-		    }
-	    }
-	    
-	    
-	    int bonusTime = 1;
-	    if(getReserve().isFired() && getReserve().getModificator().getType() == 1)  bonusTime = 2;
-	    
-		if(this.getTime() >= Player.getFramePerSecond() * bonusTime / ((getGameScreen().getLinesDestroyed() / 10) + 1)) {
-	    	this.setTime(0);
-	    		
-	    	getModificator().update();
-	    	
-		    	Polyomino current = getCurrentPolyomino();
-		    	
-		    	if(tryMove(current, "down", 1)) {
-		    		HashMap<Integer, Integer> modifs = getGameboard().modificationMap();
-		    		if(!modifs.containsKey(1) && modifs.containsValue(5)) {
-		    			if(tryMove(current, "right", 1)) {
-		    				current.setPosition(current.getPosition().x + 1, current.getPosition().y);
-		    			}
-		    		} else if(!modifs.containsKey(1) && modifs.containsValue(6)) {
-		    			if(tryMove(current, "left", -1)) {
-		    				current.setPosition(current.getPosition().x - 1, current.getPosition().y);
-		    			}
-		    		}
-		    		current.setPosition(current.getPosition().x, current.getPosition().y + 1);
-		    	} else {
-		    		int nbLinesDestroyed = destroyLines();
-		    		SoundEffect.HIT.play();
-		    		if(current.isOutOfLimits()) {
-		    			setOver(true);
-		    		} else {
-		    			getGameScreen().setScore(getGameScreen().getScore() + (4 * ((getGameScreen().getLinesDestroyed() / 10) + 1)));
-		    			getGameScreen().setScore(getGameScreen().getScore() + (nbLinesDestroyed*nbLinesDestroyed * ((getGameScreen().getLinesDestroyed() / 10) + 1)));
-		  
-		    			// On récupère l'élément suivant dans la liste.
-		    			setIndice(getIndice()+1);
-		    		}
-		    	}
-		    	
-	    	getGameboard().repaint();
-	    }
 	}
 	
 	public void control() {

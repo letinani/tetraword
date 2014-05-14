@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Polyomino {
+public class Polyomino implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private LinkedList<Brick> bricks;
 	private int color;
 	private Point position;
@@ -74,7 +76,8 @@ public class Polyomino {
 	        	if(bricksClicked.contains(this.getBrick(i).getAbsoluteCoords().x)) {
         			clicked = true;
         		}
-        	} else if(bricksWordle != null) {
+        	} 
+        	if(bricksWordle != null) {
 	        	if(bricksWordle.contains(this.getBrick(i).getAbsoluteCoords())) {
         			wordleClicked = true;
         		}

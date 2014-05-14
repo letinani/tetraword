@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -20,8 +21,9 @@ import modificators.Reserve;
 import polyominos.Polyomino;
 import polyominos.PolyominoList;
 
-public class GameScreen {
+public class GameScreen implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private PolyominoList polyominos;
 	private int linesDestroyed;
 	
@@ -36,8 +38,8 @@ public class GameScreen {
 	private HashSet<Integer> bricksClicked;
 	private LinkedHashSet<Point> bricksWordle;
 	private Font minecraftia;
-	private BufferedImage confirm;
-	private BufferedImage cancel;
+	transient private BufferedImage confirm;
+	transient private BufferedImage cancel;
 	
 	public GameScreen(int player) {
 		this.minecraftia = TFont.loadFont("data/font/Minecraftia.ttf");

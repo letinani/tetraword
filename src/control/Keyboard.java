@@ -17,10 +17,12 @@ public class Keyboard extends KeyAdapter {
 	@Override
     public void keyPressed(KeyEvent e) {
 
+        if(iface.getGameboard() == null) return;
+
         int keycode = e.getKeyCode();
         
         for(int i = 0; i < iface.getGameboard().getPlayers().length; ++i) {
-        	if(iface.getGameboard().getPlayer(i).getGameScreen().getAnagramOn() > 0 || iface.getGameboard().getPlayer(i).isOver() || iface.getGameboard().getPlayer(i).isWin()) continue;
+        	if(iface.getGameboard().getPlayer(i).getGameScreen().getAnagramOn() > 0 || iface.getGameboard().getPlayer(i).isOver() || iface.getGameboard().getPlayer(i).isWin() || iface.getGameboard().getPlayer(i).isWordleOn()) continue;
         	if(iface.getGameboard().getPlayer(i) instanceof Bot) continue;
         	Polyomino current = iface.getGameboard().getPlayer(i).getCurrentPolyomino();
         	

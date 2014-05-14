@@ -49,8 +49,9 @@ public class WordleListener implements MouseListener {
 					Brick b = (Brick) itr2.next();
 					
 					if(e.getX() > border + brickSize * 2 + b.getAbsoluteCoords().x * brickSize && e.getX() < border + brickSize * 2 + b.getAbsoluteCoords().x * brickSize + brickSize) {
-						if(e.getY() > border + brickSize * 2 + b.getAbsoluteCoords().y * brickSize && e.getY() < border + brickSize * 2 + b.getAbsoluteCoords().y * brickSize + brickSize) {
-							
+						
+						if(e.getY() > brickSize * 2 + b.getAbsoluteCoords().y * brickSize && e.getY() < brickSize * 2 + b.getAbsoluteCoords().y * brickSize + brickSize) {
+								
 							if(!bricksClicked.contains(b.getAbsoluteCoords())) {
 								if(bricksClicked.size() == 0) {
 									word.append(b.getLetter().getValue());
@@ -132,6 +133,8 @@ public class WordleListener implements MouseListener {
 		for(int i = bricksClicked.size() - 1; i >= 0; --i) {
 			bricksClicked.remove(bricksClicked.toArray()[i]);
 		}
+		
+		bricksClicked = new LinkedHashSet<Point>();
 	}
 
 	@Override

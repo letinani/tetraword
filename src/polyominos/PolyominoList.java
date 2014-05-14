@@ -1,10 +1,12 @@
 package polyominos;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Observable;
 
-public class PolyominoList extends Observable {
-	
+public class PolyominoList extends Observable implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private LinkedList<Polyomino> polyominos;
 	
 	public PolyominoList() {

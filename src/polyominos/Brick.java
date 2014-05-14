@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.io.Serializable;
 
 import menus.TFont;
 
-public class Brick {
+public class Brick implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Point coords;
 	private Point position;
 	private Letter letter;

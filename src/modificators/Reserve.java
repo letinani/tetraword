@@ -1,10 +1,14 @@
 package modificators;
 
+import java.io.Serializable;
+
 import control.SoundEffect;
 import menus.Gameboard;
+import menus.Interface;
 
-public class Reserve extends Thread {
-	
+public class Reserve extends Thread implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private static final int framePerSecond = 30;
 	private double speed;
 	private double time;
@@ -28,6 +32,8 @@ public class Reserve extends Thread {
 	@Override
 	public void run() {
 		while(!Thread.interrupted()) {
+			if(Interface.getIsPaused()) continue;
+			
 			Long start = System.currentTimeMillis();
 		    this.setTime(this.getTime() + this.getSpeed());
 		    Long end = System.currentTimeMillis();
