@@ -13,7 +13,10 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Options extends JPanel {
 	
@@ -73,6 +76,40 @@ public class Options extends JPanel {
         
         hexaButton = new ObservableButton("Hexaminos");
         polyominos.add(hexaButton.getButton());
+        
+        
+        
+        JPanel letters = new JPanel();
+        letters.setOpaque(false);
+        letters.setLayout(new BoxLayout(letters, BoxLayout.LINE_AXIS));
+        add(letters, BorderLayout.CENTER);
+        letters.setBorder(new EmptyBorder(10, 10, 40, 10));
+        
+        
+        final JLabel lblResult = new JLabel("Result");
+		lblResult.setBounds(140, 43, 82, 14);
+		letters.add(lblResult, BorderLayout.CENTER);
+		
+		
+         final int FPS_MIN = 0;
+		 final int FPS_MAX = 100;
+		 final int FPS_INIT = 50;
+		 
+		 final JSlider slFreqElements = new JSlider(JSlider.HORIZONTAL,FPS_MIN, FPS_MAX, FPS_INIT);
+
+		 slFreqElements.setMajorTickSpacing(50);
+		 slFreqElements.setMinorTickSpacing(10);
+		 slFreqElements.setPaintTicks(true);
+		 slFreqElements.setPaintLabels(true);
+		 lblResult.setText(String.valueOf(slFreqElements.getValue())+" %");
+		 slFreqElements.addChangeListener(new ChangeListener() {
+			 public void stateChanged(ChangeEvent e) {
+				 lblResult.setText(String.valueOf(slFreqElements.getValue())+" %");
+		 	 }
+		 });
+		 slFreqElements.setBounds(76, 100, 200, 45);
+        
+        letters.add(slFreqElements, BorderLayout.CENTER);
         
         
         JPanel retour = new JPanel();
