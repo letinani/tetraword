@@ -65,6 +65,7 @@ public class Interface extends JFrame implements Observer {
 		subMenu = new MenuInGame();
 		subMenu.getQuitButton().addObserver(this);
 		subMenu.getMenuButton().addObserver(this);
+		subMenu.getBackButton().addObserver(this);
 
 		try {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));
@@ -164,6 +165,8 @@ public class Interface extends JFrame implements Observer {
 			getContentPane().remove(subMenu);
 			endGame();
 			
+		}else if(button.getText() == "Reprendre le jeu") {
+			backtoGame();
 		}
 		
 		this.validate();

@@ -22,6 +22,8 @@ public class MenuInGame extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ObservableButton menuButton;
 	private ObservableButton quitButton;
+	private ObservableButton backButton;
+
 	private BufferedImage backgroundImage;
 
 	private Font minecraftia;
@@ -53,9 +55,11 @@ public class MenuInGame extends JPanel {
         l2.setLayout(new BoxLayout(l2, BoxLayout.LINE_AXIS));
         
         menuButton = new ObservableButton("Menu");
+        backButton = new ObservableButton("Reprendre le jeu");
         quitButton = new ObservableButton("Quitter");
         l2.add(menuButton.getButton(), BorderLayout.CENTER);
         l2.add(quitButton.getButton(), BorderLayout.CENTER);
+        l2.add(backButton.getButton(), BorderLayout.CENTER);
         add(l2);
 
         setOpaque(false);
@@ -79,6 +83,8 @@ public class MenuInGame extends JPanel {
 	public ObservableButton getQuitButton() {
 		return quitButton;
 	}
-
+	public ObservableButton getBackButton() {
+		return backButton;
+	}
 
 }
