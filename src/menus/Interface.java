@@ -82,6 +82,7 @@ public class Interface extends JFrame implements Observer {
 		
 		addKeyListener(new Keyboard(this));
 
+
 	}
 	
 	@Override
