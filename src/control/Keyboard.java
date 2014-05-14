@@ -21,7 +21,7 @@ public class Keyboard extends KeyAdapter {
         
         for(int i = 0; i < iface.getGameboard().getPlayers().length; ++i) {
         	if(iface.getGameboard().getPlayer(i).getGameScreen().getAnagramOn() > 0 || iface.getGameboard().getPlayer(i).isOver() || iface.getGameboard().getPlayer(i).isWin()) continue;
-        	
+        	if(iface.getGameboard().getPlayer(i) instanceof Bot) continue;
         	Polyomino current = iface.getGameboard().getPlayer(i).getCurrentPolyomino();
         	
         	if(i == 0) {
@@ -72,7 +72,7 @@ public class Keyboard extends KeyAdapter {
 			            
 			        case KeyEvent.VK_SPACE:
 			        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
-			        		iface.getGameboard().getPlayer(i).getReserve().setFired(true);
+			        		if(!Player.isWordleModeOn()) iface.getGameboard().getPlayer(i).getReserve().setFired(true);
 			        	}
 			            break;
 		        }
@@ -124,7 +124,7 @@ public class Keyboard extends KeyAdapter {
 			            
 			        case KeyEvent.VK_W:
 			        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
-			        		iface.getGameboard().getPlayer(i).getReserve().setFired(true);
+			        		if(!Player.isWordleModeOn()) iface.getGameboard().getPlayer(i).getReserve().setFired(true);
 			        	}
 			            break;
 		        }
@@ -176,7 +176,7 @@ public class Keyboard extends KeyAdapter {
 		            
 		        case KeyEvent.VK_B:
 		        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
-		        		iface.getGameboard().getPlayer(i).getReserve().setFired(true);
+		        		if(!Player.isWordleModeOn()) iface.getGameboard().getPlayer(i).getReserve().setFired(true);
 		        	}
 		            break;
         		}
@@ -228,7 +228,7 @@ public class Keyboard extends KeyAdapter {
 		            
 		        case KeyEvent.VK_SEMICOLON:
 		        	if(!iface.getGameboard().getPlayer(i).getReserve().isEmpty() && iface.getGameboard().getPlayers().length > 1) {
-		        		iface.getGameboard().getPlayer(i).getReserve().setFired(true);
+		        		if(!Player.isWordleModeOn()) iface.getGameboard().getPlayer(i).getReserve().setFired(true);
 		        	}
 		            break;
         		}

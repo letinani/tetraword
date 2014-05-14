@@ -31,21 +31,24 @@ public class Reserve extends Thread {
 		    this.setTime(this.getTime() + this.getSpeed());
 		    Long end = System.currentTimeMillis();
 		    
-		    if(this.getTime() >= Reserve.framePerSecond) {
-		    	this.setTime(0);
 		    	
-			    if(!isEmpty() && isFired()) {
-			    	modificator.update();
+		    if(!isEmpty() && modificator.getType() != 7) {
+			    if(this.getTime() >= Reserve.framePerSecond) {
+			    	this.setTime(0);
 			    	
-			    	if(modificator.getDelay() < -delay) {
-			    		setEmpty(true);
-			    		setFired(false);
-			    	}
+				    if(!isEmpty() && isFired()) {
+				    	modificator.update();
+				    	
+				    	if(modificator.getDelay() < -delay) {
+				    		setEmpty(true);
+				    		setFired(false);
+				    	}
+				    }
 			    }
-		    }
-		    
-		    if(!isEmpty() && isFired()) {
-		    	gb.repaint();
+			    
+			    if(!isEmpty() && isFired()) {
+			    	gb.repaint();
+			    }
 		    }
 		    
 		    // On attend pour respecter le nombre d'images par seconde.

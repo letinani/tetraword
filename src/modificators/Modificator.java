@@ -30,8 +30,8 @@ public class Modificator {
 		setDelay(randomNumber(7, 15));
 		setPosition(new Point(randomNumber(0, 8), randomNumber(0, 18)));
 		setVisible(false);
-		setNbTypes(7);
-		setType(randomNumber(0, getNbTypes() - 1));
+		setNbTypes(8);
+		setType(randomNumber(7, getNbTypes() - 1));
 		setIcon(modificatorType(getType()));
 	}
 	
@@ -52,6 +52,8 @@ public class Modificator {
 					return ImageIO.read(new File("data/img/right_wind.jpg"));
 				case 6:
 					return ImageIO.read(new File("data/img/left_wind.jpg"));
+				case 7:
+					return ImageIO.read(new File("data/img/wordle.jpg"));
 			}
 		} catch(IOException e) {
   	    	e.printStackTrace();

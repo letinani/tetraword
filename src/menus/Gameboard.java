@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 
+import control.Bot;
 import control.Player;
 import control.SoundEffect;
 import polyominos.Letter;
@@ -45,14 +47,14 @@ public class Gameboard extends JPanel implements Observer {
 	private LinkedList<PolyominoPattern> polyominosPatterns;
 	private Letter[] letters;
 	private LinkedList<Letter[]> lettersPatterns;
-	private String[] words;
+	private HashSet<String> words;
 	private Font minecraftia;
 	private BufferedImage backgroundImage;
 
 
 	private Player[] players;
 
-	public Gameboard(short n, short nbPlayers, String[] words) {
+	public Gameboard(short n, short nbPlayers, HashSet<String> words, boolean bot) {
         try {
   	      backgroundImage = ImageIO.read(new File("data/img/bg_game.jpg"));
   	    } catch(IOException e) {
@@ -154,13 +156,23 @@ public class Gameboard extends JPanel implements Observer {
 			this.lettersPatterns.add(l2);
 			
 			
-			
-			this.players = new Player[nbPlayers];
-			
-			for(int j = 0; j < nbPlayers; ++j) {
-				this.players[j] = new Player(this.polyominosPatterns, this.lettersPatterns, this.words, j, this);
-				this.players[j].start();
-				this.players[j].getGameScreen().getPolyominoList().addObserver(this);
+			if(!bot) {
+				this.players = new Player[nbPlayers];
+				
+				for(int j = 0; j < nbPlayers; ++j) {
+					this.players[j] = new Player(this.polyominosPatterns, this.lettersPatterns, this.words, j, this);
+					this.players[j].start();
+					this.players[j].getGameScreen().getPolyominoList().addObserver(this);
+				}
+			} else {
+				this.players = new Player[nbPlayers];
+				
+				for(int j = 0; j < nbPlayers; ++j) {
+					if(j == 0) this.players[j] = new Player(this.polyominosPatterns, this.lettersPatterns, this.words, j, this);
+					else this.players[j] = new Bot(this.polyominosPatterns, this.lettersPatterns, this.words, j, this);
+					this.players[j].start();
+					this.players[j].getGameScreen().getPolyominoList().addObserver(this);
+				}
 			}
 			
 		} catch (FileNotFoundException e) {

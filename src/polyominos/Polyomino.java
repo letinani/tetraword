@@ -62,20 +62,25 @@ public class Polyomino {
 		return false;
 	}
 	
-	public void draw(Graphics g, int brickSize, int anagramOn, HashSet<Integer> bricksClicked, boolean gameOver) {
+	public void draw(Graphics g, int brickSize, int anagramOn, HashSet<Integer> bricksClicked, HashSet<Point> bricksWordle, boolean gameOver) {
         
         g.translate(position.x * brickSize, position.y * brickSize);
         
         
         for(int i = 0; i < this.getNumberOfBricks(); ++i) {
         	boolean clicked = false;
+        	boolean wordleClicked = false;
         	if(bricksClicked != null) {
 	        	if(bricksClicked.contains(this.getBrick(i).getAbsoluteCoords().x)) {
         			clicked = true;
         		}
+        	} else if(bricksWordle != null) {
+	        	if(bricksWordle.contains(this.getBrick(i).getAbsoluteCoords())) {
+        			wordleClicked = true;
+        		}
         	}
-        	if(gameOver) this.getBrick(i).draw(g, Color.gray, brickSize, anagramOn, clicked);
-        	else this.getBrick(i).draw(g, new Color(this.getColor()), brickSize, anagramOn, clicked);
+        	if(gameOver) this.getBrick(i).draw(g, Color.gray, brickSize, anagramOn, clicked, wordleClicked);
+        	else this.getBrick(i).draw(g, new Color(this.getColor()), brickSize, anagramOn, clicked, wordleClicked);
         }		
         
         g.translate(-position.x * brickSize, -position.y * brickSize);

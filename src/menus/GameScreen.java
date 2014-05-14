@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
@@ -32,6 +34,7 @@ public class GameScreen {
 	private int brickSize;
 	private int width;
 	private HashSet<Integer> bricksClicked;
+	private LinkedHashSet<Point> bricksWordle;
 	private Font minecraftia;
 	private BufferedImage confirm;
 	private BufferedImage cancel;
@@ -105,9 +108,12 @@ public class GameScreen {
         
         if(anagramOn > 0) {
 	        g.drawImage(confirm, -brickSize * 2, anagramOn * brickSize, brickSize, brickSize, gb);
-	        
 	        g.drawImage(cancel, -brickSize, anagramOn * brickSize, brickSize, brickSize, gb);
 	        
+        } else if(bricksWordle != null) {
+	        g.drawImage(confirm, -brickSize * 2, 19 * brickSize, brickSize, brickSize, gb);
+	        g.drawImage(cancel, -brickSize, 19 * brickSize, brickSize, brickSize, gb);
+        	
         }
         
         // Modificateur
@@ -117,7 +123,7 @@ public class GameScreen {
         }
         
         for(int i = 0; i < indice + 1; ++i) {
-        	polyominos.get(i).draw(g, brickSize, anagramOn, bricksClicked, gameOver);
+        	polyominos.get(i).draw(g, brickSize, anagramOn, bricksClicked, bricksWordle, gameOver);
         }
         
         if(!modifs.containsKey(player) && modifs.containsValue(2)) {
@@ -227,6 +233,14 @@ public class GameScreen {
 	
 	public void setBricksClicked(HashSet<Integer> bricksClicked) {
 		this.bricksClicked = bricksClicked;
+	}
+
+	public HashSet<Point> getBricksWordle() {
+		return bricksWordle;
+	}
+
+	public void setBricksWordle(LinkedHashSet<Point> bricksWordle) {
+		this.bricksWordle = bricksWordle;
 	}
 
 }

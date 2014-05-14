@@ -2,6 +2,7 @@ package control;
 
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
@@ -25,16 +26,17 @@ public class Player extends Thread {
 	private LinkedList<PolyominoPattern> polyominosPatterns;
 	private LinkedList<Letter[]> lettersPatterns;
 	private int indice;
-	private String[] words;
+	private HashSet<String> words;
 	private Gameboard gb;
 	private int numPlayer;
 	private static boolean anagramModeOn;
+	private static boolean wordleModeOn;
 	private boolean over;
 	private boolean win;
 	private Modificator modificator;
 	private Reserve reserve;
 	
-	public Player(LinkedList<PolyominoPattern> polyominosPatterns, LinkedList<Letter[]> lettersPatterns, String[] words, int player, Gameboard gb) {
+	public Player(LinkedList<PolyominoPattern> polyominosPatterns, LinkedList<Letter[]> lettersPatterns, HashSet<String> words, int player, Gameboard gb) {
 		this.polyominosPatterns = polyominosPatterns;
 		this.lettersPatterns = lettersPatterns;
 		this.words = words;
@@ -54,6 +56,7 @@ public class Player extends Thread {
 		this.gb = gb;
 		
 		setAnagramModeOn(false);
+		setWordleModeOn(false);
 		
 		setOver(false);
 		setWin(false);
@@ -75,6 +78,10 @@ public class Player extends Thread {
 		    	modificator.createModificator();
 		    	gb.repaint();
 		    }
+		    
+		    if(reserve.isFired() && reserve.getModificator().getType() == 7) {
+    			if(!isWordleModeOn()) wordle();
+    		}
 		    
 		    Long end = System.currentTimeMillis();
 		    // On attend pour respecter le nombre d'images par seconde.
@@ -152,6 +159,7 @@ public class Player extends Thread {
 		elements.setAnagramOn(bricks.get(0).getAbsoluteCoords().y);
 		
 		while(true) {
+			if(isWin() || isOver()) break;
 			Long start = System.currentTimeMillis();
 			
 			anagram.setBrickSize(elements.getBrickSize());
@@ -182,6 +190,50 @@ public class Player extends Thread {
 		}
 	}
 	
+	public synchronized void wordle() {
+		setWordleModeOn(true);
+		
+		WordleListener wordle = new WordleListener(elements.getPolyominos(), getCurrentPolyomino(), elements.getPolyomino(indice + 1), elements.getBrickSize(), elements.getWidth() * numPlayer);
+		gb.addMouseListener(wordle);
+		
+		while(true) {
+			if(isWin() || isOver()) break;
+			Long start = System.currentTimeMillis();
+			
+			wordle.setBrickSize(elements.getBrickSize());
+			wordle.setBorder(elements.getWidth() * numPlayer);
+			elements.setBricksWordle(wordle.getBricksClicked());
+			wordle.setCurrent(getCurrentPolyomino());
+			wordle.setNext(elements.getPolyomino(indice + 1));
+			
+			gb.repaint();
+			if(wordle.isValidate()) {
+				if(searchWord(wordle.getWord())) {
+					elements.setScore(elements.getScore() + wordle.getScore());
+					wordle.deleteBricks();
+				} else {
+					elements.setBricksWordle(null);
+					gb.repaint();
+					setWordleModeOn(false);
+					reserve.setEmpty(true);
+		    		reserve.setFired(false);
+					break;
+				}
+			}
+			
+			Long end = System.currentTimeMillis();
+		    // On attend pour respecter le nombre d'images par seconde.
+		    if(end - start < (double) (1000.0 / Player.framePerSecond)) {
+			    try {
+			    	long result = 1000/Player.framePerSecond - (end - start);
+					Thread.sleep(result);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+		    }
+		}
+	}
+
 	public boolean tryMove(Polyomino current, String direction, int nbCase) {
 		if(!current.keepInBox(direction, nbCase)) {
 			return false;
@@ -363,24 +415,8 @@ public class Player extends Thread {
 	}
 	
 	public boolean searchWord(String s) {
-		int limitLeft = 0;
-		int limitRight = words.length;
-		int lineNumber = 0, tmpLineNumber = 1;
 		
-		while(tmpLineNumber != lineNumber) {
-			tmpLineNumber = lineNumber;
-			lineNumber = limitLeft + (limitRight - limitLeft) / 2;
-			
-			if(s.compareTo(words[lineNumber]) == 0) {
-				return true;
-			} else if(s.compareTo(words[lineNumber]) < 0) {
-				limitRight = lineNumber;
-			} else if(s.compareTo(words[lineNumber]) > 0) {
-				limitLeft = lineNumber;
-			}
-		}
-		
-		return false;
+		return words.contains(s);
 	}
 	
 	public void updatePolyominoList() {
@@ -427,6 +463,14 @@ public class Player extends Thread {
 	public static void setAnagramModeOn(boolean anagramModeOn) {
 		Player.anagramModeOn = anagramModeOn;
 	}
+	
+	public static boolean isWordleModeOn() {
+		return wordleModeOn;
+	}
+	
+	private static void setWordleModeOn(boolean b) {
+		Player.wordleModeOn = b;
+	}
 
 	public boolean isOver() {
 		return over;
@@ -458,6 +502,18 @@ public class Player extends Thread {
 
 	public void setReserve(Reserve reserve) {
 		this.reserve = reserve;
+	}
+	
+	public Gameboard getGameboard() {
+		return gb;
+	}
+	
+	public void setGameboard(Gameboard gb) {
+		this.gb = gb;
+	}
+	
+	public static int getFramePerSecond() {
+		return framePerSecond;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,7 +24,7 @@ public class Interface extends JFrame implements Observer {
 	private Options options;
 	private BufferedReader reader;
 	private int nbWords;
-	private String[] words;
+	private HashSet<String> words;
 	
 	public Interface(int widthScreen, int heightScreen) {
 		this.widthScreen = widthScreen;
@@ -57,10 +58,10 @@ public class Interface extends JFrame implements Observer {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));
 			nbWords = Integer.parseInt(reader.readLine());
 			
-			words = new String[nbWords];
+			words = new HashSet<String>();
 			
 			for(int p = 0; p < nbWords; ++p) {
-				words[p] = reader.readLine();
+				words.add(reader.readLine());
 			}
 		
 		} catch (NumberFormatException | IOException e) {
@@ -82,26 +83,29 @@ public class Interface extends JFrame implements Observer {
 		ObservableButton button = (ObservableButton) obs;
 		
 		if(button.getText() == "Solo") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 1, words);
+			gb = new Gameboard(options.getPolyominoType(), (short) 1, words, false);
 			/*subMenu = new MenuInGame();
 			getContentPane().add(subMenu);*/
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
 		} else if(button.getText() == "VS Bot") {
+			gb = new Gameboard(options.getPolyominoType(), (short) 2, words, true);
+			getContentPane().add(gb);
+			getContentPane().remove(mainMenu);
 			
 		} else if(button.getText() == "2 Joueurs") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 2, words);
+			gb = new Gameboard(options.getPolyominoType(), (short) 2, words, false);
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
 		} else if(button.getText() == "3 Joueurs") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 3, words);
+			gb = new Gameboard(options.getPolyominoType(), (short) 3, words, false);
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
 		} else if(button.getText() == "4 Joueurs") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 4, words);
+			gb = new Gameboard(options.getPolyominoType(), (short) 4, words, false);
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			

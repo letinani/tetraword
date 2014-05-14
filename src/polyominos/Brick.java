@@ -21,14 +21,14 @@ public class Brick {
 		this.position = new Point(position.x, position.y);
 	}
 	
-	public void draw(Graphics g, Color color, int brickSize, int anagramOn, boolean clicked) {
+	public void draw(Graphics g, Color color, int brickSize, int anagramOn, boolean clicked, boolean wordleClicked) {
 		if(this.getAbsoluteCoords().y >= 0) {
 			if(anagramOn == getAbsoluteCoords().y && !clicked) g.setColor(Color.white);
-			else if(anagramOn == getAbsoluteCoords().y && clicked) g.setColor(Color.black);
+			else if((anagramOn == getAbsoluteCoords().y && clicked) || wordleClicked) g.setColor(Color.black);
 			else g.setColor(color);
 			g.fillRect((int) coords.getX() * brickSize, (int) coords.getY() * brickSize, brickSize, brickSize);
 			
-			if(anagramOn != getAbsoluteCoords().y) {
+			if(anagramOn != getAbsoluteCoords().y && !wordleClicked) {
 				
 				g.setColor(surexpose(color, 192));
 				g.fillRect((int) coords.getX() * brickSize + brickSize - brickSize / 8, (int) coords.getY() * brickSize + brickSize - brickSize / 8, brickSize / 8 + 1, brickSize / 8 + 1);
@@ -59,14 +59,15 @@ public class Brick {
 				
 			}
 			
-			if(anagramOn == getAbsoluteCoords().y && !clicked) g.setColor(Color.red);
+			if((anagramOn == getAbsoluteCoords().y && !clicked) || wordleClicked) g.setColor(Color.red);
 			else g.setColor(Color.white);
 			g.drawRect((int) coords.getX() * brickSize, (int) coords.getY() * brickSize, brickSize, brickSize);
 			
-			if(anagramOn == getAbsoluteCoords().y && !clicked) g.setColor(Color.red);
+			if((anagramOn == getAbsoluteCoords().y && !clicked) || wordleClicked) g.setColor(Color.red);
 			else g.setColor(Color.white);
 			g.setFont(minecraftia.deriveFont(Font.PLAIN, brickSize * 2 / 3));
 			g.drawString(letter.getValue(), (int) coords.getX() * brickSize + brickSize/3, (int) coords.getY() * brickSize + brickSize * 3/4);
+			
 		}
 	}
 	
