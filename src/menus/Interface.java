@@ -32,9 +32,6 @@ public class Interface extends JFrame implements Observer {
 	private int nbWords;
 	private HashSet<String> words;
 	
-	transient public FileOutputStream fos;
-    transient public FileInputStream fis;
-	
 	public Interface(int widthScreen, int heightScreen) {
 		this.widthScreen = widthScreen;
 		this.heightScreen = heightScreen;
@@ -84,15 +81,6 @@ public class Interface extends JFrame implements Observer {
 		}
 		
 		addKeyListener(new Keyboard(this));
-		
-		try {
-			fis = new FileInputStream("data/conf/save.txt");
-			fos = new FileOutputStream("data/conf/save.txt");
-			
-		} catch (Exception e) {
-			mainMenu.getLoadButton().getButton().setEnabled(false);
-			e.printStackTrace();
-		}
 
 	}
 	
@@ -107,27 +95,27 @@ public class Interface extends JFrame implements Observer {
 		ObservableButton button = (ObservableButton) obs;
 		
 		if(button.getText() == "Solo") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 1, words, false);
+			gb = new Gameboard(options.getPolyominoType(), (short) 1, words, false, options.getProbability());
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
 		} else if(button.getText() == "VS Bot") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 2, words, true);
+			gb = new Gameboard(options.getPolyominoType(), (short) 2, words, true, options.getProbability());
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
 		} else if(button.getText() == "2 Joueurs") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 2, words, false);
+			gb = new Gameboard(options.getPolyominoType(), (short) 2, words, false, options.getProbability());
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
 		} else if(button.getText() == "3 Joueurs") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 3, words, false);
+			gb = new Gameboard(options.getPolyominoType(), (short) 3, words, false, options.getProbability());
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
 		} else if(button.getText() == "4 Joueurs") {
-			gb = new Gameboard(options.getPolyominoType(), (short) 4, words, false);
+			gb = new Gameboard(options.getPolyominoType(), (short) 4, words, false, options.getProbability());
 			getContentPane().add(gb);
 			getContentPane().remove(mainMenu);
 			
@@ -168,6 +156,7 @@ public class Interface extends JFrame implements Observer {
 		} else if(button.getText() == "Quitter") {
 			System.exit(0);
 		} else if(button.getText() == "Menu") {
+			isPaused = false;
 			for(int i = 0; i < gb.getPlayers().length; ++i) {
 				gb.getPlayer(i).setOver(true);
 			}

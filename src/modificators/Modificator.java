@@ -29,11 +29,11 @@ public class Modificator implements Serializable {
 	}
 	
 	public void createModificator() {
-		setDelay(randomNumber(7, 15));
+		setDelay(randomNumber(15, 30));
 		setPosition(new Point(randomNumber(0, 8), randomNumber(0, 18)));
 		setVisible(false);
 		setNbTypes(8);
-		setType(randomNumber(7, getNbTypes() - 1));
+		setType(randomNumber(0, getNbTypes() - 1));
 		setIcon(modificatorType(getType()));
 	}
 	

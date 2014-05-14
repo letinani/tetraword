@@ -49,11 +49,12 @@ public class Gameboard extends JPanel implements Observer, Serializable {
 	private HashSet<String> words;
 	private Font minecraftia;
 	transient private BufferedImage backgroundImage;
+	private int probability;
  
 	private Player[] players;
 	
 
-	public Gameboard(short n, short nbPlayers, HashSet<String> words, boolean bot) {
+	public Gameboard(short n, short nbPlayers, HashSet<String> words, boolean bot, int probability) {
         try {
   	      backgroundImage = ImageIO.read(new File("data/img/bg_game.jpg"));
   	    } catch(IOException e) {
@@ -83,6 +84,8 @@ public class Gameboard extends JPanel implements Observer, Serializable {
 			}
 			
 			this.setPolyominoType(n);
+			
+			this.setProbability(probability);
 			
 			this.words = words;
 			
@@ -352,7 +355,7 @@ public class Gameboard extends JPanel implements Observer, Serializable {
 		double sumFreq = 0;
 		
 		for(int i = 0; i < letters.length; ++i) {
-			currentFreq = letters[i].getFrequence();
+			currentFreq = letters[i].getFrequence() * getProbability() / 100.0 + (double)((100.0 - getProbability()) / letters.length);
 			
 			if(rand >= sumFreq && rand < currentFreq + sumFreq) {
 				l.setValue(letters[i].getValue());
@@ -379,6 +382,14 @@ public class Gameboard extends JPanel implements Observer, Serializable {
 
 	public void setLetters(Letter[] letters) {
 		this.letters = letters;
+	}
+	
+	public void setProbability(int probability) {
+		this.probability = probability;
+	}
+	
+	public int getProbability() {
+		return probability;
 	}
 	
 }

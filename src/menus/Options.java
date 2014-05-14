@@ -125,11 +125,13 @@ public class Options extends JPanel {
 				 labels.put(100, labelMax);
 				 slFreqElements.setLabelTable(labels);
 				 slFreqElements.setPaintLabels(true);
-				 
+			 
+			 setProbability(slFreqElements.getValue());
 			 lblResult.setText(String.valueOf(slFreqElements.getValue())+" %");
 			 slFreqElements.setValue(100);
 			 slFreqElements.addChangeListener(new ChangeListener() {
 				 public void stateChanged(ChangeEvent e) {
+					 setProbability(slFreqElements.getValue());
 					 lblResult.setText(String.valueOf(slFreqElements.getValue())+" %");
 			 	 }
 			 });

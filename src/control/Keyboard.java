@@ -251,7 +251,7 @@ public class Keyboard extends KeyAdapter {
         		if(test) iface.endGame();
         		break;
         	case KeyEvent.VK_ESCAPE:
-        		if (Interface.getIsPaused() == true) {
+        		if (Interface.getIsPaused()) {
         			iface.backtoGame();
         		}
         		else {
