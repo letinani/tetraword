@@ -13,10 +13,10 @@ Plusieurs modes de jeu sont possibles :
 - le mode tetris standard : cassez les briques en completant des ligne
 - le mode wordle : ramassez le pour l'utiliser lorsqu'il apparait et composer un maximum de mots en selectionnant une lettre n'import où et en cliquant sur ses proches voisins.
 
-## Les points 
+## Le score
 
-* une ligne complété
-* un tetris : 4 lignes d'un coup
+1 ligne vous rapporte 5 points minimum. Plus il y a de ligne complétées et plus le niveau de difficulté est élévé, plus le score sera multiplié. De même, votre score sera multiplié selon la longueur des mots trouvé par ligne.
+Un bonus a ramassé permet de gagner 50 points et un malus a éviter en fait perdre 50.
 
 ## Mode solo
 
