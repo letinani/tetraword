@@ -6,18 +6,19 @@ import javax.sound.sampled.*;
 
 
 public enum SoundEffect {
-   WELCOME("data/sounds/Pickup_Coin9.wav"),   
-   HIT("data/sounds/Pickup_Coin10.wav"),
-   LOOSE("data/sounds/Danger2.wav"),
+   WELCOME("data/sounds/Pickup_Coin9.wav"),  // au lancement du jeu
+   HIT("data/sounds/Pickup_Coin10.wav"), // quand un polyomino touche le sol
+   LOOSE("data/sounds/Danger2.wav"), // quand la partie est perdue
    WIN("data/sounds/Emerge5.wav"),// la fin de la partie
    COMPLETE_LINE("data/sounds/Beep8.wav"), // son : quand la ligne est complete
-   MUSIC("data/sounds/GameBoyRocker.wav"),
-   MOVE("data/sounds/Blip_Select.wav"),
-   GET_MODIF("data/sounds/Randomize32.wav"),
-   APPLY_MODIF("data/sounds/Randomize6.wav"),
-   BONUS("data/sounds/Powerup3.wav"),
-   MALUS("data/sounds/Shut_Down2.wav");
+   MUSIC("data/sounds/GameBoyRocker.wav"), // musique du jeu
+   MOVE("data/sounds/Blip_Select.wav"), // quand une pièce est déplacée
+   GET_MODIF("data/sounds/Randomize32.wav"), // quand un modificateur est ramassé
+   APPLY_MODIF("data/sounds/Randomize6.wav"),// quand un modificateur est utilisé
+   BONUS("data/sounds/Powerup3.wav"), // pour les bonnes choses
+   MALUS("data/sounds/Shut_Down2.wav"); // pour les mauvaise choses
    
+   // nouvelle enumération pour le volume
    public static enum Volume {
       MUTE, LOW, MEDIUM, HIGH
    }
@@ -29,11 +30,8 @@ public enum SoundEffect {
    SoundEffect(String soundFileName) {
       try {
     	  File soundFile = new File(soundFileName);
-         // Set up an audio input stream piped from the sound file.
          AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-         // Get a clip resource.
          clip = AudioSystem.getClip();
-         // Open audio clip and load samples from the audio input stream.
          clip.open(audioInputStream);
       } catch (UnsupportedAudioFileException e) {
          e.printStackTrace();
@@ -43,24 +41,27 @@ public enum SoundEffect {
          e.printStackTrace();
       }
    }
-   
-   // Play or Re-play the sound effect from the beginning, by rewinding.
+   // lire le son
    public void play() {
       if (volume != Volume.MUTE) {
          if (clip.isRunning())
-            clip.stop();   
+            clip.stop();  
+         // remise du son au début
          clip.setFramePosition(0); 
          clip.start();     
       }
    }
+   // lire le son en boucle
    public void playLoop() {
 	   clip.loop(Clip.LOOP_CONTINUOUSLY);
    } 
+   // arret du son
    public void stop() {
 	   clip.stop();
+	   clip.setFramePosition(0); 
    } 
-   // Optional static method to pre-load all the sound files.
+   // pour pré charger les sons
    public static void init() {
-      values(); // calls the constructor for all the elements
+      values();
    }
 }

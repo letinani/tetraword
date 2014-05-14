@@ -76,6 +76,7 @@ public class Player extends Thread implements Serializable {
 	
 	@Override
 	public void run() {
+		// gestion des threads du jeu
 		while(!Thread.interrupted()) {
 			if(Interface.getIsPaused()) continue;
 			
@@ -247,7 +248,8 @@ public class Player extends Thread implements Serializable {
 		    }
 		}
 	}
-
+	
+	//déplacement des polyominos
 	public boolean tryMove(Polyomino current, String direction, int nbCase) {
 		if(!current.keepInBox(direction, nbCase)) {
 			return false;

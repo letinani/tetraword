@@ -2,14 +2,8 @@ package menus;
 
 import java.awt.Dimension;
 import java.io.BufferedReader;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
@@ -92,7 +86,7 @@ public class Interface extends JFrame implements Observer {
     }
 
 	@Override
-	public void update(Observable obs, Object obj) { // Fonction qui sert �� r��cup��rer les clics des boutons du menu
+	public void update(Observable obs, Object obj) { // Fonction qui sert à récupérer les clics des boutons du menu
 		
 		ObservableButton button = (ObservableButton) obs;
 		
