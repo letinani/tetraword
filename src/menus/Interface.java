@@ -19,7 +19,8 @@ public class Interface extends JFrame implements Observer {
 	private int widthScreen;
 	private int heightScreen;
 	private Menu mainMenu;
-	//private MenuInGame subMenu;
+	private MenuInGame subMenu;
+	private static boolean isPaused = false;
 	private Gameboard gb;
 	private Options options;
 	private BufferedReader reader;
@@ -54,6 +55,8 @@ public class Interface extends JFrame implements Observer {
 		options.getHexaButton().addObserver(this);
 		options.getReturnButton().addObserver(this);
 		
+		subMenu = new MenuInGame();
+
 		try {
 			reader = new BufferedReader(new FileReader("data/conf/words.txt"));
 			nbWords = Integer.parseInt(reader.readLine());
@@ -78,7 +81,7 @@ public class Interface extends JFrame implements Observer {
     }
 
 	@Override
-	public void update(Observable obs, Object obj) { // Fonction qui sert à récupérer les clics des boutons du menu
+	public void update(Observable obs, Object obj) { // Fonction qui sert �� r��cup��rer les clics des boutons du menu
 		
 		ObservableButton button = (ObservableButton) obs;
 		
@@ -149,7 +152,7 @@ public class Interface extends JFrame implements Observer {
 		this.repaint();
 	}
 	
-	public void endGame() { // Exécutée quand le jeu se termine
+	public void endGame() { // Exécuée quand le jeu se termine
 		getContentPane().remove(gb);
 		getContentPane().add(mainMenu);
 		
@@ -157,17 +160,29 @@ public class Interface extends JFrame implements Observer {
 		this.repaint();
 	}
 	
+	public void pauseGame() { // Exécutée quand le jeu est en pause
+		isPaused = true;
+
+		getContentPane().remove(gb);
+		getContentPane().add(subMenu);
+
+		this.validate();
+		this.repaint();
+
+	}
+	public void backtoGame() { // Exécutée quand le jeu est en pause
+		isPaused = false;
+		getContentPane().remove(subMenu);
+		getContentPane().add(gb);
+
+		this.validate();
+		this.repaint();
+	}
 	public Gameboard getGameboard() {
 		return gb;
 	}
-	public static void main(String[] args) {
-		Interface tetraword = new Interface(800, 600);
-		tetraword.pack();
-		tetraword.setVisible(true);
-		SoundEffect.init();
-	    SoundEffect.volume = SoundEffect.Volume.LOW;  
-		SoundEffect.WELCOME.play();
 
+	public static boolean getIsPaused() {
+		return isPaused;
 	}
-
 }

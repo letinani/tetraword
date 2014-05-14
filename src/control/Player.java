@@ -13,6 +13,7 @@ import polyominos.Polyomino;
 import polyominos.PolyominoPattern;
 import menus.GameScreen;
 import menus.Gameboard;
+import menus.Interface;
 import modificators.Modificator;
 import modificators.Reserve;
 
@@ -68,7 +69,7 @@ public class Player extends Thread {
 	
 	@Override
 	public void run() {
-		while(!Thread.interrupted()) {
+		while(!Thread.interrupted() && !Interface.getIsPaused()) {
 			Long start = System.currentTimeMillis();
 		    this.setTime(this.getTime() + this.getSpeed());
 		    

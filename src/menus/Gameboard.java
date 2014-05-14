@@ -216,7 +216,7 @@ public class Gameboard extends JPanel implements Observer {
         if(nbLosers == players.length - 1 && players.length > 1) {
         	// arret de la musique de fond
         	SoundEffect.MUSIC.stop();
-        	//affichage des r�sultats
+        	//affichage des résultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
@@ -229,7 +229,7 @@ public class Gameboard extends JPanel implements Observer {
         } else if(nbLosers == players.length && players.length > 1) {
         	// arret de la musique de fond
         	SoundEffect.MUSIC.stop();
-        	//affichage des r�sultats
+        	//affichage des résultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
@@ -242,7 +242,7 @@ public class Gameboard extends JPanel implements Observer {
         	SoundEffect.MUSIC.stop();
         	// bruitage
     		SoundEffect.LOOSE.play();
-    		//affichage des r�sultats
+    		//affichage des résultats
         	g.setColor(Color.black);
         	g.fillRect(0, this.getHeight() / 3, this.getWidth(), this.getHeight() / 3);
         	g.setColor(Color.red);
