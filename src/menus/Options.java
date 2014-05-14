@@ -105,7 +105,7 @@ public class Options extends JPanel {
 
 			 final int FPS_MIN = 0;
 			 final int FPS_MAX = 100;
-			 final int FPS_INIT = 50;
+			 final int FPS_INIT = 100;
 			
 			 final JSlider slFreqElements = new JSlider(JSlider.HORIZONTAL,FPS_MIN, FPS_MAX, FPS_INIT);
 
@@ -114,7 +114,7 @@ public class Options extends JPanel {
 			 slFreqElements.setMinorTickSpacing(10);
 			 slFreqElements.setPaintTicks(true);
 			 
-			 // labesq des éxtrémités
+			 // labes des extrémités
 			 	Hashtable<Integer, JLabel> labels = new Hashtable<Integer, JLabel>();
 				 JLabel labelMin = new JLabel("équiprobable");
 				 JLabel labelMax = new JLabel("réaliste");
