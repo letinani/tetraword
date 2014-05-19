@@ -92,7 +92,7 @@ public class Player extends Thread implements Serializable {
 		    }
 		    
 		    if(reserve.isFired() && reserve.getModificator().getType() == 7) {
-    			if(!isWordleModeOn()) wordle();
+    			if(!isWordleModeOn() && !isAnagramModeOn()) wordle();
     		}
 		    
 		    Long end = System.currentTimeMillis();
@@ -362,7 +362,7 @@ public class Player extends Thread implements Serializable {
 					}
 				}
 				
-				if(!isAnagramModeOn() && !(this instanceof Bot)) anagram(bricksToDelete);
+				if(!isAnagramModeOn() && !isWordleModeOn() && !(this instanceof Bot)) anagram(bricksToDelete);
 		    }
 		}
 		
